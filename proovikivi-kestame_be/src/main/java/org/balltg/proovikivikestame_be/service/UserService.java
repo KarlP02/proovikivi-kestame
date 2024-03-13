@@ -16,7 +16,11 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public List<UserModel> getUserByFirstName(String firstName) {
-        return userRepository.findByFirstName(firstName);
+    public List<UserModel> getUserByFirstname(String firstname) {
+        return userRepository.findByFirstname(firstname);
+    }
+
+    public void addUser(UserModel user) {
+        userRepository.save(user);
     }
 }

@@ -5,10 +5,7 @@ import org.balltg.proovikivikestame_be.repository.UserRepository;
 import org.balltg.proovikivikestame_be.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,15 +14,19 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-    
+
     @GetMapping("/user")
     public List<UserModel> getAllUsers() {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/user/{firstName}")
-    public List<UserModel> getUserByFirstName(@PathVariable String firstName) {
-        return userService.getUserByFirstName(firstName);
+    @GetMapping("/user/{firstname}")
+    public List<UserModel> getUserByFirstname(@PathVariable String firstname) {
+        return userService.getUserByFirstname(firstname);
     }
 
+    @PostMapping("/user")
+    public void addUser(@RequestBody UserModel user) {
+        userService.addUser(user);
+    }
 }
