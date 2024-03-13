@@ -5,14 +5,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 @Entity
-public class User {
-    @Id
-    @GeneratedValue
-    private Long id;
-    private String name;
+public class UserModel {
+    private @Id @GeneratedValue Long id;
+    private String firstName;
+    private String lastName;
     private String email;
     private String password;
     private Boolean deleted;
+    private Date created;
 }
