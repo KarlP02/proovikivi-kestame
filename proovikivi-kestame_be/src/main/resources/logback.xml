@@ -1,0 +1,8 @@
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <!-- Enable debug logging for Spring Security -->
+    <logger name="org.springframework.security" level="DEBUG"/>
+
+    <!-- Other configurations -->
+</configuration>
