@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserModel, Long> {
-    List<UserModel> findByFirstname(String firstname);
+    List<UserModel> findByLastname(String lastname);
 }

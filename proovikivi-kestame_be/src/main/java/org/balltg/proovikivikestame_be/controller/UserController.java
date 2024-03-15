@@ -21,13 +21,23 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/user/{firstname}")
-    public List<UserModel> getUserByFirstname(@PathVariable String firstname) {
-        return userService.getUserByFirstname(firstname);
+    @GetMapping("/user/{lastname}")
+    public List<UserModel> getUserByLastname(@PathVariable String lastname) {
+        return userService.getUserByLastname(lastname);
     }
 
     @PostMapping("/user")
     public void addUser(@RequestBody UserModel user) {
         userService.addUser(user);
+    }
+
+    @PutMapping("/user/{index}")
+    public void updateUser(@PathVariable Long index, @RequestBody UserModel user) {
+        userService.updateUser(index, user);
+    }
+
+    @DeleteMapping("/user/{index}")
+    public void deleteUser(@PathVariable Long index) {
+        userService.deleteUser(index);
     }
 }
