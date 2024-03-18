@@ -23,7 +23,6 @@ public class SecurityConfig {
                     req.requestMatchers("/h2-console/**").permitAll();
                     req.requestMatchers("/h2-console").permitAll();
                     req.requestMatchers("/v1/**").permitAll();
-//                    req.requestMatchers("error/**").permitAll();
                     req.anyRequest().denyAll();
                 })
                 .headers(Customizer.withDefaults())

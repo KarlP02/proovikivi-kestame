@@ -31,6 +31,11 @@ public class UserController {
         userService.addUser(user);
     }
 
+    @PostMapping("/login")
+    public void loginUser(@RequestParam UserModel email, @RequestParam UserModel password) {
+
+    }
+
     @PutMapping("/user/{index}")
     public void updateUser(@PathVariable Long index, @RequestBody UserModel user) {
         userService.updateUser(index, user);
