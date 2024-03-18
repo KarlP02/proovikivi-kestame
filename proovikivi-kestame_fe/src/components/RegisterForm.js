@@ -1,16 +1,24 @@
-import { Button, FormControl, TextField } from "@mui/material";
+import {
+  Alert,
+  Button,
+  FormControl,
+  TextField,
+  Box,
+  Fade,
+} from "@mui/material";
 import axios from "axios";
 import { useState, useRef } from "react";
-// import bcrypt from "bcrypt";
 
 const RegisterForm = () => {
-  // const saltRounds = 10;
-
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordAgain, setPasswordAgain] = useState("");
+
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertSeverity, setAlertSeverity] = useState("success");
+  const [alertOpen, setAlertOpen] = useState(false);
 
   const firstNameRef = useRef(null);
   const lastNameRef = useRef(null);
@@ -19,12 +27,8 @@ const RegisterForm = () => {
   const passwordAgainRef = useRef(null);
 
   const handleSubmit = (e) => {
-    if (passwordRef.current.value === passwordAgainRef.current.value) {
-      // bcrypt.genSalt(saltRounds, function (err, salt) {
-      //   bcrypt.hash(passwordRef.current.value, salt, function (err, hash) {
-
-      //   });
-      // });
+    e.preventDefault();
+    if (passwordRef.current.value == passwordAgainRef.current.value) {
       axios
         .post("http://localhost:8080/v1/user", {
           firstname: firstNameRef.current.value,
@@ -39,62 +43,81 @@ const RegisterForm = () => {
         .catch(function (error) {
           console.log(error);
         });
+      setAlertMessage("Form submitted successfully!");
+      setAlertSeverity("success");
+      setAlertOpen(true);
     } else {
-      console.log("passwords do not match");
+      setAlertMessage("Passwords do not match!");
+      setAlertSeverity("error");
+      setAlertOpen(true);
     }
+    setTimeout(() => setAlertOpen(false), 5000);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <FormControl>
-        <TextField
-          className="first_name"
-          label="First name"
-          type="string"
-          value={firstName}
-          inputRef={firstNameRef}
-          onChange={(e) => setFirstName(e.target.value)}
-          required
-        />
-        <TextField
-          className="last_name"
-          label="Last name"
-          type="string"
-          value={lastName}
-          inputRef={lastNameRef}
-          onChange={(e) => setLastName(e.target.value)}
-          required
-        />
-        <TextField
-          className="email"
-          label="Email"
-          type="email"
-          value={email}
-          inputRef={emailRef}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <TextField
-          className="password"
-          label="Password"
-          type="password"
-          value={password}
-          inputRef={passwordRef}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <TextField
-          className="password_again"
-          label="Password again"
-          type="password"
-          value={passwordAgain}
-          inputRef={passwordAgainRef}
-          onChange={(e) => setPasswordAgain(e.target.value)}
-          required
-        />
-        <Button type="submit">Create Account</Button>
-      </FormControl>
-    </form>
+    <Box>
+      <Fade in={alertOpen}>
+        <Alert
+          severity={alertSeverity}
+          onClose={() => {
+            setAlertMessage("");
+            setAlertOpen(false);
+          }}
+        >
+          {alertMessage}
+        </Alert>
+      </Fade>
+      <form onSubmit={handleSubmit}>
+        <FormControl>
+          <TextField
+            className="first_name"
+            label="First name"
+            type="string"
+            value={firstName}
+            inputRef={firstNameRef}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
+          <TextField
+            className="last_name"
+            label="Last name"
+            type="string"
+            value={lastName}
+            inputRef={lastNameRef}
+            onChange={(e) => setLastName(e.target.value)}
+            required
+          />
+          <TextField
+            className="email"
+            label="Email"
+            type="email"
+            value={email}
+            inputRef={emailRef}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <TextField
+            className="password"
+            label="Password"
+            type="password"
+            value={password}
+            inputRef={passwordRef}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <TextField
+            className="password_again"
+            label="Password again"
+            type="password"
+            value={passwordAgain}
+            inputRef={passwordAgainRef}
+            onChange={(e) => setPasswordAgain(e.target.value)}
+            required
+          />
+          <Button type="submit">Create Account</Button>
+        </FormControl>
+      </form>
+    </Box>
   );
 };
 
