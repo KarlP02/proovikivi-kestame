@@ -30,7 +30,7 @@ const RegisterForm = () => {
     e.preventDefault();
     if (passwordRef.current.value === passwordAgainRef.current.value) {
       axios
-        .post("http://localhost:8080/v1/user", {
+        .post("http://localhost:8080/api/auth/register", {
           firstname: firstNameRef.current.value,
           lastname: lastNameRef.current.value,
           email: emailRef.current.value,

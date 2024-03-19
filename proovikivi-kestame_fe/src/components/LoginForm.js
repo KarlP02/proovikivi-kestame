@@ -24,7 +24,7 @@ const LoginForm = () => {
     e.preventDefault();
     if (emailRef.current.value != null && passwordRef.current.value != null) {
       axios
-        .post("http://localhost:8080/v1/user", {
+        .post("http://localhost:8080/api/auth/login", {
           email: emailRef.current.value,
           password: passwordRef.current.value,
         })

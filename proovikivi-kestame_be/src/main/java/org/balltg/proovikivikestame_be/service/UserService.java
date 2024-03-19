@@ -17,8 +17,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public List<UserModel> getUserByLastname(String lastname) {
-        return userRepository.findByLastname(lastname);
+    public Optional<UserModel> getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
     public void addUser(UserModel user) {

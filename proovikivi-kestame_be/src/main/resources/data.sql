@@ -1,2 +1,4 @@
-INSERT INTO user_model (firstname, lastname, password, email, deleted, created)
-    VALUES ('karl', 'piiber', 'asd', 'asd', false, now());
+INSERT INTO role (name)
+    VALUES ('ADMIN');
+INSERT INTO role (name)
+    VALUES ('USER');

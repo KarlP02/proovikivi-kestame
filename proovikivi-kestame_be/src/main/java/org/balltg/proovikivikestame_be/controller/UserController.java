@@ -8,40 +8,36 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/v1")
+@RequestMapping("/user")
 @CrossOrigin
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/user")
+    @GetMapping()
     public List<UserModel> getAllUsers() {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/user/{lastname}")
-    public List<UserModel> getUserByLastname(@PathVariable String lastname) {
-        return userService.getUserByLastname(lastname);
+    @GetMapping("{email}")
+    public Optional<UserModel> getUserByEmail(@PathVariable String email) {
+        return userService.getUserByEmail(email);
     }
 
-    @PostMapping("/user")
+    @PostMapping()
     public void addUser(@RequestBody UserModel user) {
         userService.addUser(user);
     }
 
-    @PostMapping("/login")
-    public void loginUser(@RequestParam UserModel email, @RequestParam UserModel password) {
-
-    }
-
-    @PutMapping("/user/{index}")
+    @PutMapping("{index}")
     public void updateUser(@PathVariable Long index, @RequestBody UserModel user) {
         userService.updateUser(index, user);
     }
 
-    @DeleteMapping("/user/{index}")
+    @DeleteMapping("{index}")
     public void deleteUser(@PathVariable Long index) {
         userService.deleteUser(index);
     }
