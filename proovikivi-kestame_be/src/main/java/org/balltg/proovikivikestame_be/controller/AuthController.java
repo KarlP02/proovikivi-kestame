@@ -46,7 +46,8 @@ public class AuthController {
     public ResponseEntity<AuthResponseDto> login(@RequestBody LoginDto loginDto) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        loginDto.getEmail(), loginDto.getPassword()));
+                        loginDto.getEmail(),
+                        loginDto.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtGenerator.generateToken(authentication);
 
@@ -56,7 +57,7 @@ public class AuthController {
     @PostMapping("register")
     public ResponseEntity<String> register(@RequestBody RegisterDto registerDto) {
         if (userRepository.existsByEmail(registerDto.getEmail())) {
-            return new ResponseEntity<>("Email is already in use!", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Email is already in use", HttpStatus.BAD_REQUEST);
         }
 
         UserModel user = new UserModel();

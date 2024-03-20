@@ -1,4 +1,4 @@
-package org.balltg.proovikivikestame_be.service;
+package org.balltg.proovikivikestame_be.config;
 
 import org.balltg.proovikivikestame_be.model.RoleModel;
 import org.balltg.proovikivikestame_be.model.UserModel;
@@ -28,7 +28,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserModel user = userRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("Username not found"));
+        UserModel user = userRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("Email not found"));
         return new User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
     }
 
