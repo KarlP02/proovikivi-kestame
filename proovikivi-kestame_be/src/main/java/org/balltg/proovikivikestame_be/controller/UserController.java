@@ -22,7 +22,7 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("{email}")
+    @GetMapping("/{email}")
     public Optional<UserModel> getUserByEmail(@PathVariable String email) {
         return userService.getUserByEmail(email);
     }
@@ -32,12 +32,12 @@ public class UserController {
         userService.addUser(user);
     }
 
-    @PutMapping("{index}")
+    @PutMapping("/{index}")
     public void updateUser(@PathVariable Long index, @RequestBody UserModel user) {
         userService.updateUser(index, user);
     }
 
-    @DeleteMapping("{index}")
+    @DeleteMapping("/{index}")
     public void deleteUser(@PathVariable Long index) {
         userService.deleteUser(index);
     }

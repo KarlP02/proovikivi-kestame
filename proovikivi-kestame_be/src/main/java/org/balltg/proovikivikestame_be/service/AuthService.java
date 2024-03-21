@@ -1,7 +1,9 @@
-package org.balltg.proovikivikestame_be.controller;
+package org.balltg.proovikivikestame_be.service;
 
 import lombok.RequiredArgsConstructor;
-import org.balltg.proovikivikestame_be.config.JwtService;
+import org.balltg.proovikivikestame_be.dto.AuthRequest;
+import org.balltg.proovikivikestame_be.controller.AuthResponse;
+import org.balltg.proovikivikestame_be.dto.RegisterRequest;
 import org.balltg.proovikivikestame_be.model.Role;
 import org.balltg.proovikivikestame_be.model.UserModel;
 import org.balltg.proovikivikestame_be.repository.UserRepository;
@@ -10,17 +12,15 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
-public class AuthenticationService {
+public class AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationResponse register(RegisterRequest request) {
+    public AuthResponse register(RegisterRequest request) {
         var user = UserModel.builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
@@ -30,12 +30,12 @@ public class AuthenticationService {
                 .build();
         userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse.builder()
+        return AuthResponse.builder()
                 .token(jwtToken)
                 .build();
     }
 
-    public AuthenticationResponse authenticate(AuthenticationRequest request) {
+    public AuthResponse authenticate(AuthRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
@@ -45,7 +45,7 @@ public class AuthenticationService {
         var user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse.builder()
+        return AuthResponse.builder()
                 .token(jwtToken)
                 .build();
     }

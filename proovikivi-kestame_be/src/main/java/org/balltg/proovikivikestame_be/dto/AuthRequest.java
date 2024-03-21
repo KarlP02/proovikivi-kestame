@@ -1,4 +1,4 @@
-package org.balltg.proovikivikestame_be.controller;
+package org.balltg.proovikivikestame_be.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegisterRequest {
-    private String firstname;
-    private String lastname;
+public class AuthRequest {
     private String email;
     private String password;
 }
