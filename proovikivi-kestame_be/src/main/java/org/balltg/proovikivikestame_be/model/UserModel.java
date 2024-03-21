@@ -35,7 +35,7 @@ public class UserModel implements UserDetails {
 
     private String password;
 
-    private Boolean deleted = false;
+    private Boolean deleted;
 
     @CreationTimestamp
     private Instant created;

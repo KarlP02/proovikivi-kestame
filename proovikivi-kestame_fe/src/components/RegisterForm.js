@@ -6,8 +6,10 @@ import {
   Box,
   Fade,
 } from "@mui/material";
-import axios from "axios";
+import axios from "../api/axios";
 import { useState, useRef } from "react";
+
+const registerURL = "/api/auth/register";
 
 const RegisterForm = () => {
   const [firstName, setFirstName] = useState("");
@@ -30,12 +32,11 @@ const RegisterForm = () => {
     e.preventDefault();
     if (passwordRef.current.value === passwordAgainRef.current.value) {
       axios
-        .post("http://localhost:8080/api/auth/register", {
+        .post(registerURL, {
           firstname: firstNameRef.current.value,
           lastname: lastNameRef.current.value,
           email: emailRef.current.value,
           password: passwordRef.current.value,
-          deleted: false,
         })
         .then(function (response) {
           console.log(response);
@@ -43,7 +44,7 @@ const RegisterForm = () => {
         .catch(function (error) {
           console.log(error);
         });
-      setAlertMessage("Form submitted successfully!");
+      setAlertMessage("Registered account successfully!");
       setAlertSeverity("success");
       setAlertOpen(true);
     } else {

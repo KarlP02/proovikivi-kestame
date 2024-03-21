@@ -2,17 +2,16 @@ package org.balltg.proovikivikestame_be.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.balltg.proovikivikestame_be.dto.AuthRequest;
+import org.balltg.proovikivikestame_be.dto.AuthResponse;
 import org.balltg.proovikivikestame_be.dto.RegisterRequest;
 import org.balltg.proovikivikestame_be.service.AuthService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
+@CrossOrigin
 public class AuthController {
     private final AuthService service;
 

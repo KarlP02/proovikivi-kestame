@@ -1,17 +1,7 @@
-import { Box, Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Box } from "@mui/material";
 
 const Home = () => {
-  return (
-    <Box>
-      <Link to="/register">
-        <Button>register</Button>
-      </Link>
-      <Link to="/login">
-        <Button>login</Button>
-      </Link>
-    </Box>
-  );
+  return <Box>Home page</Box>;
 };
 
 export default Home;

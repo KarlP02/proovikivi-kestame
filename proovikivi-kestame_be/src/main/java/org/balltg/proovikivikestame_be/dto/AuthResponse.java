@@ -1,4 +1,4 @@
-package org.balltg.proovikivikestame_be.controller;
+package org.balltg.proovikivikestame_be.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,4 +11,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AuthResponse {
     private String token;
+    private String role;
 }
