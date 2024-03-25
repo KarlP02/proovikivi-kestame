@@ -41,9 +41,7 @@ const LoginForm = () => {
         .then(function (response) {
           console.log(response);
           const accessToken = response.data.token;
-          const roles = [];
-          roles.push(response.data.role);
-          setAuth({ email, password, roles, accessToken });
+          setAuth({ email, accessToken });
           navigate(from, { replace: true });
         })
         .catch(function (error) {
