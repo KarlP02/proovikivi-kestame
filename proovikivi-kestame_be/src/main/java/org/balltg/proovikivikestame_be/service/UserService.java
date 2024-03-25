@@ -1,6 +1,6 @@
 package org.balltg.proovikivikestame_be.service;
 
-import org.balltg.proovikivikestame_be.model.UserModel;
+import org.balltg.proovikivikestame_be.model.user.UserModel;
 import org.balltg.proovikivikestame_be.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

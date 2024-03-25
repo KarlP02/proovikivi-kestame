@@ -1,20 +1,19 @@
-package org.balltg.proovikivikestame_be.model;
+package org.balltg.proovikivikestame_be.model.user;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.balltg.proovikivikestame_be.model.enterprise.EnterpriseModel;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.time.Instant;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 @Builder
@@ -38,16 +37,19 @@ public class UserModel implements UserDetails {
     private Boolean deleted;
 
     @CreationTimestamp
-    private Instant created;
+    private LocalDateTime created;
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "enterprise_id")
+    private EnterpriseModel enterprise;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
-
     @Override
     public String getUsername() {
         return email;
