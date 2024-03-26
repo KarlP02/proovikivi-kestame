@@ -11,6 +11,10 @@ import {
 } from "@mui/material";
 import axios from "../api/axios";
 import { useState, useRef, useEffect } from "react";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+
+const challengeURL = "/challenge/category";
 
 const ChallengeForm = () => {
   const [name, setName] = useState("");
@@ -21,8 +25,8 @@ const ChallengeForm = () => {
   const [goal, setGoal] = useState("");
   const [description, setDescription] = useState("");
   const [question, setQuestion] = useState("");
-  const [beginDate, setBeginDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [beginDate, setBeginDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   const [categoryData, setCategoryData] = useState([]);
   const [targetAudienceData, setTargetAudienceData] = useState([]);
@@ -44,13 +48,14 @@ const ChallengeForm = () => {
   const endDateRef = useRef(null);
 
   const handleSubmit = (e) => {
-    return null;
+    e.preventDefault();
+    console.log(beginDateRef.current.value);
   };
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const categoryResponse = await axios.get("/challenge/category");
+        const categoryResponse = await axios.get(challengeURL);
         setCategoryData(categoryResponse.data);
       } catch (error) {
         console.error(error);
@@ -141,6 +146,24 @@ const ChallengeForm = () => {
             onChange={(e) => setQuestion(e.target.value)}
             required
           />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              className="begin_date"
+              label="Algus kuupäev"
+              value={beginDate}
+              inputRef={beginDateRef}
+              onChange={(e) => setBeginDate(e)}
+              required
+            />
+            <DatePicker
+              className="end_date"
+              label="Lõpp kuupäev"
+              value={endDate}
+              inputRef={endDateRef}
+              onChange={(e) => setEndDate(e)}
+              required
+            />
+          </LocalizationProvider>
           <Button type="submit">Loo Väljakutse</Button>
         </FormControl>
       </form>
