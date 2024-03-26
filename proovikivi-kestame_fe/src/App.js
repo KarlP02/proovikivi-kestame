@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Main from "./pages/Main";
 import Layout from "./components/Layout";
 import RequireAuth from "./components/RequireAuth";
+import Challenge from "./pages/Challenge";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         {/* auth */}
         <Route element={<RequireAuth allowedRoles={["USER"]} />}>
           <Route path="/" element={<Home />} />
+          <Route path="challenge" element={<Challenge />} />
         </Route>
       </Route>
     </Routes>
