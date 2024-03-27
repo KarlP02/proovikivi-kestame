@@ -5,11 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.balltg.proovikivikestame_be.model.user.UserModel;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
-
 
 @Data
 @NoArgsConstructor
@@ -27,8 +27,10 @@ public class ChallengeModel {
 
     private String person_email;
 
+    @DateTimeFormat(pattern = "mm-dd-yyyy")
     private LocalDate begin_date;
 
+    @DateTimeFormat(pattern = "mm-dd-yyyy")
     private LocalDate end_date;
 
     private String description;
@@ -39,13 +41,17 @@ public class ChallengeModel {
     @JoinColumn(name = "user_id")
     private UserModel user;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id")
+    private CategoryModel category;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "challenge_target_audience",
             joinColumns = {@JoinColumn(name = "challenge_id")},
             inverseJoinColumns = {@JoinColumn(name = "target_audience_id")}
     )
-    private Set<TargetAudienceModel> targetAudience = new HashSet<>();
+    private Set<TargetAudienceModel> target_audience = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
@@ -54,12 +60,4 @@ public class ChallengeModel {
             inverseJoinColumns = {@JoinColumn(name = "goal_id")}
     )
     private Set<GoalModel> goal = new HashSet<>();
-
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "challenge_category",
-            joinColumns = {@JoinColumn(name = "challenge_id")},
-            inverseJoinColumns = {@JoinColumn(name = "category_id")}
-    )
-    private Set<CategoryModel> category = new HashSet<>();
 }

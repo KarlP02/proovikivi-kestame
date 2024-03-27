@@ -8,21 +8,30 @@ import {
   Select,
   MenuItem,
   InputLabel,
+  ToggleButtonGroup,
+  ToggleButton,
 } from "@mui/material";
 import axios from "../api/axios";
 import { useState, useRef, useEffect } from "react";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import useAuth from "../hooks/useAuth";
 
 const challengeURL = "/challenge/category";
+const targetAudienceURL = "/challenge/targetaudience";
+const goalURL = "/challenge/goal";
+
+const challengePostURL = "placeholder";
 
 const ChallengeForm = () => {
+  const { auth } = useAuth();
+
   const [name, setName] = useState("");
   const [contactPerson, setContactPerson] = useState("");
   const [personEmail, setPersonEmail] = useState("");
   const [category, setCategory] = useState("");
-  const [targetAudience, setTargetAudience] = useState("");
-  const [goal, setGoal] = useState("");
+  const [targetAudience, setTargetAudience] = useState([]);
+  const [goal, setGoal] = useState([]);
   const [description, setDescription] = useState("");
   const [question, setQuestion] = useState("");
   const [beginDate, setBeginDate] = useState(null);
@@ -47,22 +56,52 @@ const ChallengeForm = () => {
   const beginDateRef = useRef(null);
   const endDateRef = useRef(null);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(beginDateRef.current.value);
-  };
-
   useEffect(() => {
-    const fetchCategories = async () => {
+    const fetchInfo = async () => {
       try {
         const categoryResponse = await axios.get(challengeURL);
+        const targetAudienceResponse = await axios.get(targetAudienceURL);
+        const goalResponse = await axios.get(goalURL);
         setCategoryData(categoryResponse.data);
+        setTargetAudienceData(targetAudienceResponse.data);
+        setGoalData(goalResponse.data);
       } catch (error) {
         console.error(error);
       }
     };
-    fetchCategories();
+    fetchInfo();
   }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (auth.email !== undefined) {
+      axios
+        .post(challengePostURL, {
+          name: nameRef.current.value,
+          contact_person: contactPersonRef.current.value,
+          person_email: personEmailRef.current.value,
+          begin_date: beginDateRef.current.value,
+          end_date: endDateRef.current.value,
+          description: descriptionRef.current.value,
+          question: questionRef.current.value,
+          email: auth.email,
+          category: categoryRef.current.value,
+          target_audience: targetAudience,
+          goal: goal,
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    } else {
+      setAlertMessage("Email and/or password incorrect");
+      setAlertSeverity("error");
+      setAlertOpen(true);
+    }
+    setTimeout(() => setAlertOpen(false), 5000);
+  };
 
   return (
     <Box>
@@ -86,7 +125,7 @@ const ChallengeForm = () => {
             value={name}
             inputRef={nameRef}
             onChange={(e) => setName(e.target.value)}
-            required
+            // required
           />
           <TextField
             className="contact_person"
@@ -95,7 +134,7 @@ const ChallengeForm = () => {
             value={contactPerson}
             inputRef={contactPersonRef}
             onChange={(e) => setContactPerson(e.target.value)}
-            required
+            // required
           />
           <TextField
             className="person_email"
@@ -104,7 +143,7 @@ const ChallengeForm = () => {
             value={personEmail}
             inputRef={personEmailRef}
             onChange={(e) => setPersonEmail(e.target.value)}
-            required
+            // required
           />
         </FormControl>
         <FormControl>
@@ -116,14 +155,53 @@ const ChallengeForm = () => {
             value={category}
             inputRef={categoryRef}
             onChange={(e) => setCategory(e.target.value)}
-            required
+            // required
           >
-            {categoryData.map((item) => (
-              <MenuItem key={item.id} value={item.id}>
-                {item.name}
+            {categoryData.map((data) => (
+              <MenuItem key={data.id} value={data.id}>
+                {data.name}
               </MenuItem>
             ))}
           </Select>
+          <ToggleButtonGroup
+            className="target_audience"
+            label="Sihtgrupp"
+            value={targetAudience}
+            onChange={(e, newTargetAudience) =>
+              setTargetAudience(newTargetAudience)
+            }
+            // required
+          >
+            {targetAudienceData.map((data) => (
+              <ToggleButton
+                key={data.id}
+                value={data.id}
+                disabled={
+                  targetAudience.length >= 3 &&
+                  !targetAudience.includes(data.id)
+                }
+              >
+                {data.name}
+              </ToggleButton>
+            ))}
+          </ToggleButtonGroup>
+          <ToggleButtonGroup
+            className="goal"
+            labal="Eesmärk"
+            value={goal}
+            onChange={(e, newGoal) => setGoal(newGoal)}
+            // required
+          >
+            {goalData.map((data) => (
+              <ToggleButton
+                key={data.id}
+                value={data.id}
+                disabled={goal.length >= 3 && !goal.includes(data.id)}
+              >
+                {data.name}
+              </ToggleButton>
+            ))}
+          </ToggleButtonGroup>
           <TextField
             className="description"
             label="Väljakutse kirjeldus"
@@ -133,7 +211,7 @@ const ChallengeForm = () => {
             multiline
             rows={6}
             onChange={(e) => setDescription(e.target.value)}
-            required
+            // required
           />
           <TextField
             className="question"
@@ -144,7 +222,7 @@ const ChallengeForm = () => {
             multiline
             rows={3}
             onChange={(e) => setQuestion(e.target.value)}
-            required
+            // required
           />
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
@@ -153,7 +231,7 @@ const ChallengeForm = () => {
               value={beginDate}
               inputRef={beginDateRef}
               onChange={(e) => setBeginDate(e)}
-              required
+              // required
             />
             <DatePicker
               className="end_date"
@@ -161,7 +239,7 @@ const ChallengeForm = () => {
               value={endDate}
               inputRef={endDateRef}
               onChange={(e) => setEndDate(e)}
-              required
+              // required
             />
           </LocalizationProvider>
           <Button type="submit">Loo Väljakutse</Button>

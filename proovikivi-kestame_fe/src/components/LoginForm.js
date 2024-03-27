@@ -42,6 +42,7 @@ const LoginForm = () => {
           console.log(response);
           const accessToken = response.data.token;
           setAuth({ email, accessToken });
+          setPassword("");
           navigate(from, { replace: true });
         })
         .catch(function (error) {

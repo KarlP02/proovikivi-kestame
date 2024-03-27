@@ -1,5 +1,6 @@
 package org.balltg.proovikivikestame_be.service;
 
+import lombok.RequiredArgsConstructor;
 import org.balltg.proovikivikestame_be.model.user.UserModel;
 import org.balltg.proovikivikestame_be.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +10,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public List<UserModel> getAllUsers() {
         return userRepository.findAll();
