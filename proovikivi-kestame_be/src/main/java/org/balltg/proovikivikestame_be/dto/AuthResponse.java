@@ -1,4 +1,4 @@
-package org.balltg.proovikivikestame_be.controller;
+package org.balltg.proovikivikestame_be.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

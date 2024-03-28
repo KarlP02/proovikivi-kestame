@@ -4,11 +4,8 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <Box>
-      <Link to="/register">
-        <Button>register</Button>
-      </Link>
-      <Link to="/login">
-        <Button>login</Button>
+      <Link to="/challenge">
+        <Button>create challenge</Button>
       </Link>
     </Box>
   );
