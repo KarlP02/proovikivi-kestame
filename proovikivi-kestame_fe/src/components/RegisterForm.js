@@ -40,9 +40,14 @@ const RegisterForm = () => {
         })
         .then(function (response) {
           console.log(response);
+          setFirstName("");
+          setLastName("");
+          setEmail("");
+          setPassword("");
+          setPasswordAgain("");
         })
         .catch(function (error) {
-          console.log(error);
+          console.error(error);
         });
       setAlertMessage("Registered account successfully!");
       setAlertSeverity("success");
@@ -69,7 +74,7 @@ const RegisterForm = () => {
         </Alert>
       </Fade>
       <form onSubmit={handleSubmit}>
-        <FormControl>
+        <FormControl className="register_form_main">
           <TextField
             className="first_name"
             label="First name"
@@ -115,7 +120,9 @@ const RegisterForm = () => {
             onChange={(e) => setPasswordAgain(e.target.value)}
             required
           />
-          <Button type="submit">Create Account</Button>
+          <Button variant="contained" type="submit">
+            Create Account
+          </Button>
         </FormControl>
       </form>
     </Box>

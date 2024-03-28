@@ -13,13 +13,13 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         {/* public */}
-        <Route path="main" element={<Main />} />
+        <Route path="/" element={<Main />} />
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
 
         {/* auth */}
         <Route element={<RequireAuth allowedRoles={["USER"]} />}>
-          <Route path="/" element={<Home />} />
+          <Route path="home" element={<Home />} />
           <Route path="challenge" element={<Challenge />} />
         </Route>
       </Route>

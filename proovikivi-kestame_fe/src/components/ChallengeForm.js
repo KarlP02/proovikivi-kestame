@@ -91,12 +91,15 @@ const ChallengeForm = () => {
         })
         .then(function (response) {
           console.log(response);
+          setAlertMessage("Form submitted successfully");
+          setAlertSeverity("success");
+          setAlertOpen(true);
         })
         .catch(function (error) {
-          console.log(error);
+          console.error(error);
         });
     } else {
-      setAlertMessage("Email and/or password incorrect");
+      setAlertMessage("Check that every field in the form is filled");
       setAlertSeverity("error");
       setAlertOpen(true);
     }
@@ -116,8 +119,8 @@ const ChallengeForm = () => {
           {alertMessage}
         </Alert>
       </Fade>
-      <form onSubmit={handleSubmit}>
-        <FormControl>
+      <form className="challenge_form_main" onSubmit={handleSubmit}>
+        <FormControl className="challenge_form_1">
           <TextField
             className="name"
             label="Väljakutse nimi"
@@ -146,7 +149,7 @@ const ChallengeForm = () => {
             required
           />
         </FormControl>
-        <FormControl>
+        <FormControl className="challenge_form_1">
           <InputLabel id="category-label">Väljakutse kategooria</InputLabel>
           <Select
             className="category"
@@ -163,6 +166,7 @@ const ChallengeForm = () => {
               </MenuItem>
             ))}
           </Select>
+          <Box>Valige kuni 3 sihtgruppi</Box>
           <ToggleButtonGroup
             className="target_audience"
             label="Sihtgrupp"
@@ -185,6 +189,7 @@ const ChallengeForm = () => {
               </ToggleButton>
             ))}
           </ToggleButtonGroup>
+          <Box>Valige kuni 3 eesmärki</Box>
           <ToggleButtonGroup
             className="goal"
             labal="Eesmärk"
@@ -242,7 +247,9 @@ const ChallengeForm = () => {
               required
             />
           </LocalizationProvider>
-          <Button type="submit">Loo Väljakutse</Button>
+          <Button variant="contained" type="submit">
+            Loo Väljakutse
+          </Button>
         </FormControl>
       </form>
     </Box>

@@ -9,7 +9,7 @@ import {
 import axios from "../api/axios";
 import { useState, useRef } from "react";
 import useAuth from "../hooks/useAuth";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 
 const loginURL = "/api/auth/authenticate";
 
@@ -19,6 +19,7 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  const register = "/register";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,11 +43,12 @@ const LoginForm = () => {
           console.log(response);
           const accessToken = response.data.token;
           setAuth({ email, accessToken });
+          setEmail("");
           setPassword("");
           navigate(from, { replace: true });
         })
         .catch(function (error) {
-          console.log(error);
+          console.error(error);
         });
     } else {
       setAlertMessage("Email and/or password incorrect");
@@ -70,7 +72,7 @@ const LoginForm = () => {
         </Alert>
       </Fade>
       <form onSubmit={handleSubmit}>
-        <FormControl>
+        <FormControl className="login_form_main">
           <TextField
             className="email"
             label="Email"
@@ -89,7 +91,12 @@ const LoginForm = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <Button type="submit">Login</Button>
+          <Button variant="contained" type="submit">
+            Login
+          </Button>
+          <Button variant="contained" onClick={() => navigate(register)}>
+            Register
+          </Button>
         </FormControl>
       </form>
     </Box>
