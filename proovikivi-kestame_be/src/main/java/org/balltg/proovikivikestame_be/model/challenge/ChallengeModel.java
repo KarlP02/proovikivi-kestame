@@ -2,6 +2,7 @@ package org.balltg.proovikivikestame_be.model.challenge;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.balltg.proovikivikestame_be.model.user.UserModel;
@@ -12,6 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -27,10 +29,10 @@ public class ChallengeModel {
 
     private String person_email;
 
-    @DateTimeFormat(pattern = "mm-dd-yyyy")
+    @DateTimeFormat(pattern = "MM-dd-yyyy")
     private LocalDate begin_date;
 
-    @DateTimeFormat(pattern = "mm-dd-yyyy")
+    @DateTimeFormat(pattern = "MM-dd-yyyy")
     private LocalDate end_date;
 
     private String description;

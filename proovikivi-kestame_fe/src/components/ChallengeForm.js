@@ -21,7 +21,7 @@ const challengeURL = "/challenge/category";
 const targetAudienceURL = "/challenge/targetaudience";
 const goalURL = "/challenge/goal";
 
-const challengePostURL = "placeholder";
+const challengePostURL = "/challenge/upload";
 
 const ChallengeForm = () => {
   const { auth } = useAuth();
@@ -125,7 +125,7 @@ const ChallengeForm = () => {
             value={name}
             inputRef={nameRef}
             onChange={(e) => setName(e.target.value)}
-            // required
+            required
           />
           <TextField
             className="contact_person"
@@ -134,16 +134,16 @@ const ChallengeForm = () => {
             value={contactPerson}
             inputRef={contactPersonRef}
             onChange={(e) => setContactPerson(e.target.value)}
-            // required
+            required
           />
           <TextField
             className="person_email"
             label="Kontaktisiku e-maili aadress"
-            type="string"
+            type="email"
             value={personEmail}
             inputRef={personEmailRef}
             onChange={(e) => setPersonEmail(e.target.value)}
-            // required
+            required
           />
         </FormControl>
         <FormControl>
@@ -155,7 +155,7 @@ const ChallengeForm = () => {
             value={category}
             inputRef={categoryRef}
             onChange={(e) => setCategory(e.target.value)}
-            // required
+            required
           >
             {categoryData.map((data) => (
               <MenuItem key={data.id} value={data.id}>
@@ -170,7 +170,7 @@ const ChallengeForm = () => {
             onChange={(e, newTargetAudience) =>
               setTargetAudience(newTargetAudience)
             }
-            // required
+            required
           >
             {targetAudienceData.map((data) => (
               <ToggleButton
@@ -190,7 +190,7 @@ const ChallengeForm = () => {
             labal="Eesmärk"
             value={goal}
             onChange={(e, newGoal) => setGoal(newGoal)}
-            // required
+            required
           >
             {goalData.map((data) => (
               <ToggleButton
@@ -211,7 +211,7 @@ const ChallengeForm = () => {
             multiline
             rows={6}
             onChange={(e) => setDescription(e.target.value)}
-            // required
+            required
           />
           <TextField
             className="question"
@@ -222,7 +222,7 @@ const ChallengeForm = () => {
             multiline
             rows={3}
             onChange={(e) => setQuestion(e.target.value)}
-            // required
+            required
           />
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
@@ -231,7 +231,7 @@ const ChallengeForm = () => {
               value={beginDate}
               inputRef={beginDateRef}
               onChange={(e) => setBeginDate(e)}
-              // required
+              required
             />
             <DatePicker
               className="end_date"
@@ -239,7 +239,7 @@ const ChallengeForm = () => {
               value={endDate}
               inputRef={endDateRef}
               onChange={(e) => setEndDate(e)}
-              // required
+              required
             />
           </LocalizationProvider>
           <Button type="submit">Loo Väljakutse</Button>

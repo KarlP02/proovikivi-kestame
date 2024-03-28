@@ -1,16 +1,15 @@
 package org.balltg.proovikivikestame_be.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.balltg.proovikivikestame_be.dto.ChallengeRequest;
 import org.balltg.proovikivikestame_be.model.challenge.CategoryModel;
 import org.balltg.proovikivikestame_be.model.challenge.GoalModel;
 import org.balltg.proovikivikestame_be.model.challenge.TargetAudienceModel;
 import org.balltg.proovikivikestame_be.service.challenge.CategoryService;
+import org.balltg.proovikivikestame_be.service.challenge.ChallengeService;
 import org.balltg.proovikivikestame_be.service.challenge.GoalService;
 import org.balltg.proovikivikestame_be.service.challenge.TargetAudienceService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,6 +18,7 @@ import java.util.List;
 @RequestMapping("/challenge")
 @CrossOrigin
 public class ChallengeController {
+    private final ChallengeService challengeService;
     private final CategoryService categoryService;
     private final TargetAudienceService targetAudienceService;
     private final GoalService goalService;
@@ -38,5 +38,8 @@ public class ChallengeController {
         return goalService.findAll();
     }
 
-
+    @PostMapping("/upload")
+    public void uploadChallenge(@RequestBody ChallengeRequest request) {
+        challengeService.uploadChallenge(request);
+    }
 }
