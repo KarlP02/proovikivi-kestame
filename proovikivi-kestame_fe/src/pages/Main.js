@@ -1,7 +1,12 @@
 import { Box } from "@mui/material";
+import ChallengeList from "../components/ChallengeList";
 
 const Main = () => {
-  return <Box>display challenges</Box>;
+  return (
+    <Box>
+      <ChallengeList />
+    </Box>
+  );
 };
 
 export default Main;

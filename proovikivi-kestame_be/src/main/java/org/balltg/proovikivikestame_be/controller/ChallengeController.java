@@ -2,7 +2,9 @@ package org.balltg.proovikivikestame_be.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.balltg.proovikivikestame_be.dto.ChallengeRequest;
+import org.balltg.proovikivikestame_be.dto.ChallengeResponse;
 import org.balltg.proovikivikestame_be.model.challenge.CategoryModel;
+import org.balltg.proovikivikestame_be.model.challenge.ChallengeModel;
 import org.balltg.proovikivikestame_be.model.challenge.GoalModel;
 import org.balltg.proovikivikestame_be.model.challenge.TargetAudienceModel;
 import org.balltg.proovikivikestame_be.service.challenge.CategoryService;
@@ -12,6 +14,7 @@ import org.balltg.proovikivikestame_be.service.challenge.TargetAudienceService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -36,6 +39,16 @@ public class ChallengeController {
     @GetMapping("/goal")
     public List<GoalModel> findAllGoals() {
         return goalService.findAll();
+    }
+
+    @GetMapping
+    public List<ChallengeModel> findAllChallenges() {
+        return challengeService.findAll();
+    }
+
+    @GetMapping("/{index}")
+    public ChallengeResponse findChallengeById(@PathVariable Long index) {
+        return challengeService.findChallengeById(index);
     }
 
     @PostMapping("/upload")

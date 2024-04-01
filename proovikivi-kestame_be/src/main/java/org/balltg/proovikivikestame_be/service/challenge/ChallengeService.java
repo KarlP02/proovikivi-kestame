@@ -2,6 +2,7 @@ package org.balltg.proovikivikestame_be.service.challenge;
 
 import lombok.RequiredArgsConstructor;
 import org.balltg.proovikivikestame_be.dto.ChallengeRequest;
+import org.balltg.proovikivikestame_be.dto.ChallengeResponse;
 import org.balltg.proovikivikestame_be.model.challenge.ChallengeModel;
 import org.balltg.proovikivikestame_be.model.challenge.GoalModel;
 import org.balltg.proovikivikestame_be.model.challenge.TargetAudienceModel;
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -52,5 +55,25 @@ public class ChallengeService {
                 .goal(goals)
                 .build();
         challengeRepository.save(challenge);
+    }
+
+    public List<ChallengeModel> findAll() {
+        return challengeRepository.findAll();
+    }
+
+    public ChallengeResponse findChallengeById(Long index) {
+        var challenge = challengeRepository.findById(index).orElseThrow();
+
+        return ChallengeResponse.builder()
+                .name(challenge.getName())
+                .contact_person(challenge.getContact_person())
+                .person_email(challenge.getPerson_email())
+                .begin_date(challenge.getBegin_date())
+                .end_date(challenge.getEnd_date())
+                .description(challenge.getDescription())
+                .category(challenge.getCategory())
+                .target_audience(challenge.getTarget_audience())
+                .goal(challenge.getGoal())
+                .build();
     }
 }

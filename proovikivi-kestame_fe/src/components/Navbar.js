@@ -4,7 +4,7 @@ import useAuth from "../hooks/useAuth";
 import { useEffect, useState } from "react";
 
 const defaultPages = ["main"];
-const loginPage = ["login"];
+const loginPages = ["login", "register"];
 const userPages = ["home", "challenge"];
 
 const Navbar = () => {
@@ -20,7 +20,7 @@ const Navbar = () => {
         if (auth?.accessToken !== undefined) {
           setPages(defaultPages.concat(userPages));
         } else {
-          setPages(defaultPages.concat(loginPage));
+          setPages(defaultPages.concat(loginPages));
         }
       } catch (error) {
         console.error(error);
@@ -41,11 +41,15 @@ const Navbar = () => {
       <Toolbar>
         <Box>
           {pages.map((page) => (
-            <Button variant="" key={page} onClick={() => changePage(page)}>
+            <Button
+              sx={{ color: "white" }}
+              key={page}
+              onClick={() => changePage(page)}
+            >
               {page}
             </Button>
           ))}
-        </Box>{" "}
+        </Box>
       </Toolbar>
     </AppBar>
   );
