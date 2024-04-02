@@ -1,6 +1,7 @@
 package org.balltg.proovikivikestame_be.service.challenge;
 
 import lombok.RequiredArgsConstructor;
+import org.balltg.proovikivikestame_be.dto.ChallengeNameResponse;
 import org.balltg.proovikivikestame_be.dto.ChallengeRequest;
 import org.balltg.proovikivikestame_be.dto.ChallengeResponse;
 import org.balltg.proovikivikestame_be.model.challenge.ChallengeModel;
@@ -20,6 +21,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -74,6 +76,14 @@ public class ChallengeService {
                 .category(challenge.getCategory())
                 .target_audience(challenge.getTarget_audience())
                 .goal(challenge.getGoal())
+                .build();
+    }
+
+    public ChallengeNameResponse findChallengeName() {
+        var challenge = challengeRepository.findAll();
+
+        return  ChallengeNameResponse.builder()
+                .name(challenge.stream().map(ChallengeModel::getName).collect(Collectors.toList()))
                 .build();
     }
 }

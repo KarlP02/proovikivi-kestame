@@ -1,6 +1,7 @@
 package org.balltg.proovikivikestame_be.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.balltg.proovikivikestame_be.dto.ChallengeNameResponse;
 import org.balltg.proovikivikestame_be.dto.ChallengeRequest;
 import org.balltg.proovikivikestame_be.dto.ChallengeResponse;
 import org.balltg.proovikivikestame_be.model.challenge.CategoryModel;
@@ -44,6 +45,11 @@ public class ChallengeController {
     @GetMapping
     public List<ChallengeModel> findAllChallenges() {
         return challengeService.findAll();
+    }
+
+    @GetMapping("/name")
+    public ChallengeNameResponse findChallengeName() {
+        return challengeService.findChallengeName();
     }
 
     @GetMapping("/{index}")

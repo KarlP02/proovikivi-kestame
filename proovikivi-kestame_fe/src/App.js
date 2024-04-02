@@ -10,8 +10,9 @@ import Challenge from "./pages/Challenge";
 import { useEffect, useState } from "react";
 import axios from "./api/axios";
 import ChallengeContent from "./components/ChallengeContent";
+import ChallengePage from "./pages/ChallengePage";
 
-const fetchChallengesURL = "/challenge";
+const fetchChallengesURL = "/challenge/name";
 
 const App = () => {
   const [challengeRoutes, setChallengesRoutes] = useState([]);
@@ -20,13 +21,13 @@ const App = () => {
     const fetchChallengeRoutes = async () => {
       try {
         const challengeRoutesResponse = await axios.get(fetchChallengesURL);
-        setChallengesRoutes(challengeRoutesResponse.data);
+        setChallengesRoutes(challengeRoutesResponse.data.name);
       } catch (error) {
         console.error(error);
       }
     };
     fetchChallengeRoutes();
-  }, [challengeRoutes]);
+  }, []);
 
   return (
     <Routes>
@@ -35,11 +36,11 @@ const App = () => {
         <Route path="/" element={<Main />} />
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
-        {challengeRoutes.map((route) => (
+        {challengeRoutes.map((route, index) => (
           <Route
-            key={route.id}
-            path={route.name}
-            element={<ChallengeContent RouteID={route.id} />}
+            key={index + 1}
+            path={route}
+            element={<ChallengePage RouteID={index + 1} />}
           />
         ))}
 

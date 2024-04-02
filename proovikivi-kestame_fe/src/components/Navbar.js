@@ -30,7 +30,7 @@ const Navbar = () => {
   }, [auth]);
 
   const changePage = (e) => {
-    if (e == "main") {
+    if (e === "main") {
       e = "";
     }
     navigate(`/${e}`);

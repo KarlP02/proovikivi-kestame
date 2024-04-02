@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../api/axios";
 
-const fetchChallengesURL = "/challenge";
+const fetchChallengesURL = "/challenge/name";
 
 const ChallengeList = () => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const ChallengeList = () => {
     const fetchChallenges = async () => {
       try {
         const challengesResponse = await axios.get(fetchChallengesURL);
-        setChallenges(challengesResponse.data);
+        setChallenges(challengesResponse.data.name);
       } catch (error) {
         console.error(error);
       }
@@ -28,13 +28,13 @@ const ChallengeList = () => {
 
   return (
     <Box>
-      {challenges.map((challenge) => (
+      {challenges.map((challenge, index) => (
         <Button
           variant="contained"
-          key={challenge.id}
-          onClick={() => changePage(challenge.name)}
+          key={index + 1}
+          onClick={() => changePage(challenge)}
         >
-          {challenge.name}
+          {challenge}
         </Button>
       ))}
     </Box>
