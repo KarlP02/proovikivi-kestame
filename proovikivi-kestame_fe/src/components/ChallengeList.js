@@ -3,18 +3,18 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../api/axios";
 
-const fetchChallengesURL = "/challenge/name";
+const challengeListURL = "/challenge/name";
 
 const ChallengeList = () => {
   const navigate = useNavigate();
 
-  const [challenges, setChallenges] = useState([]);
+  const [challengeList, setChallengesList] = useState([]);
 
   useEffect(() => {
     const fetchChallenges = async () => {
       try {
-        const challengesResponse = await axios.get(fetchChallengesURL);
-        setChallenges(challengesResponse.data.name);
+        const response = await axios.get(challengeListURL);
+        setChallengesList(response.data.name);
       } catch (error) {
         console.error(error);
       }
@@ -28,7 +28,7 @@ const ChallengeList = () => {
 
   return (
     <Box>
-      {challenges.map((challenge, index) => (
+      {challengeList.map((challenge, index) => (
         <Button
           variant="contained"
           key={index + 1}

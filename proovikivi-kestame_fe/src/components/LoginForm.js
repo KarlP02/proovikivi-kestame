@@ -7,9 +7,9 @@ import {
   Fade,
 } from "@mui/material";
 import axios from "../api/axios";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import useAuth from "../hooks/useAuth";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const loginURL = "/api/auth/authenticate";
 
@@ -28,16 +28,13 @@ const LoginForm = () => {
   const [alertSeverity, setAlertSeverity] = useState("success");
   const [alertOpen, setAlertOpen] = useState(false);
 
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (emailRef.current.value != null && passwordRef.current.value != null) {
+    if (email !== "" && password !== "") {
       axios
         .post(loginURL, {
-          email: emailRef.current.value,
-          password: passwordRef.current.value,
+          email: email,
+          password: password,
         })
         .then(function (response) {
           console.log(response);
@@ -49,9 +46,12 @@ const LoginForm = () => {
         })
         .catch(function (error) {
           console.error(error);
+          setAlertMessage("Email and/or password incorrect");
+          setAlertSeverity("error");
+          setAlertOpen(true);
         });
     } else {
-      setAlertMessage("Email and/or password incorrect");
+      setAlertMessage("Email and/or password missing");
       setAlertSeverity("error");
       setAlertOpen(true);
     }
@@ -78,7 +78,6 @@ const LoginForm = () => {
             label="Email"
             type="email"
             value={email}
-            inputRef={emailRef}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
@@ -87,7 +86,6 @@ const LoginForm = () => {
             label="Password"
             type="password"
             value={password}
-            inputRef={passwordRef}
             onChange={(e) => setPassword(e.target.value)}
             required
           />

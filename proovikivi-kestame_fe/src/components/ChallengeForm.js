@@ -20,7 +20,6 @@ import useAuth from "../hooks/useAuth";
 const challengeURL = "/challenge/category";
 const targetAudienceURL = "/challenge/targetaudience";
 const goalURL = "/challenge/goal";
-
 const challengePostURL = "/challenge/upload";
 
 const ChallengeForm = () => {
@@ -45,14 +44,6 @@ const ChallengeForm = () => {
   const [alertSeverity, setAlertSeverity] = useState("success");
   const [alertOpen, setAlertOpen] = useState(false);
 
-  const nameRef = useRef(null);
-  const contactPersonRef = useRef(null);
-  const personEmailRef = useRef(null);
-  const categoryRef = useRef(null);
-  const targetAudienceRef = useRef(null);
-  const goalRef = useRef(null);
-  const descriptionRef = useRef(null);
-  const questionRef = useRef(null);
   const beginDateRef = useRef(null);
   const endDateRef = useRef(null);
 
@@ -77,15 +68,15 @@ const ChallengeForm = () => {
     if (auth.email !== undefined) {
       axios
         .post(challengePostURL, {
-          name: nameRef.current.value,
-          contact_person: contactPersonRef.current.value,
-          person_email: personEmailRef.current.value,
+          name: name,
+          contact_person: contactPerson,
+          person_email: personEmail,
           begin_date: beginDateRef.current.value,
           end_date: endDateRef.current.value,
-          description: descriptionRef.current.value,
-          question: questionRef.current.value,
+          description: description,
+          question: question,
           email: auth.email,
-          category: categoryRef.current.value,
+          category: category,
           target_audience: targetAudience,
           goal: goal,
         })
@@ -97,9 +88,12 @@ const ChallengeForm = () => {
         })
         .catch(function (error) {
           console.error(error);
+          setAlertMessage("Check that every field is filled");
+          setAlertSeverity("error");
+          setAlertOpen(true);
         });
     } else {
-      setAlertMessage("Check that every field in the form is filled");
+      setAlertMessage("Need to be logged in to submit");
       setAlertSeverity("error");
       setAlertOpen(true);
     }
@@ -126,7 +120,6 @@ const ChallengeForm = () => {
             label="Väljakutse nimi"
             type="string"
             value={name}
-            inputRef={nameRef}
             onChange={(e) => setName(e.target.value)}
             required
           />
@@ -135,7 +128,6 @@ const ChallengeForm = () => {
             label="Peamine kontaktisik"
             type="string"
             value={contactPerson}
-            inputRef={contactPersonRef}
             onChange={(e) => setContactPerson(e.target.value)}
             required
           />
@@ -144,7 +136,6 @@ const ChallengeForm = () => {
             label="Kontaktisiku e-maili aadress"
             type="email"
             value={personEmail}
-            inputRef={personEmailRef}
             onChange={(e) => setPersonEmail(e.target.value)}
             required
           />
@@ -156,7 +147,6 @@ const ChallengeForm = () => {
             labelId="category-label"
             label="Väljakutse kategooria"
             value={category}
-            inputRef={categoryRef}
             onChange={(e) => setCategory(e.target.value)}
             required
           >
@@ -212,7 +202,6 @@ const ChallengeForm = () => {
             label="Väljakutse kirjeldus"
             type="string"
             value={description}
-            inputRef={descriptionRef}
             multiline
             rows={6}
             onChange={(e) => setDescription(e.target.value)}
@@ -223,7 +212,6 @@ const ChallengeForm = () => {
             label="Küsimused"
             type="string"
             value={question}
-            inputRef={questionRef}
             multiline
             rows={3}
             onChange={(e) => setQuestion(e.target.value)}

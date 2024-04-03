@@ -9,7 +9,6 @@ import RequireAuth from "./components/RequireAuth";
 import Challenge from "./pages/Challenge";
 import { useEffect, useState } from "react";
 import axios from "./api/axios";
-import ChallengeContent from "./components/ChallengeContent";
 import ChallengePage from "./pages/ChallengePage";
 
 const fetchChallengesURL = "/challenge/name";

@@ -2,43 +2,43 @@ import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "../api/axios";
 
-const fetchChallengeURL = "/challenge";
+const challengeContentURL = "/challenge";
 
-const ChallengeContent = (RouteID) => {
-  const [challenge, setChallenge] = useState([]);
+const ChallengeContent = ({ RouteID }) => {
+  const [challengeContent, setChallengeContent] = useState([]);
 
   useEffect(() => {
     const fetchChallenge = async () => {
       try {
-        const challengeResponse = await axios.get(
-          fetchChallengeURL + `/${RouteID.RouteID}`
-        );
-        setChallenge(challengeResponse.data);
+        const response = await axios.get(challengeContentURL + `/${RouteID}`);
+        setChallengeContent(response.data);
       } catch (error) {
         console.error(error);
       }
     };
     fetchChallenge();
-  }, []);
+  }, [RouteID]);
 
   return (
     <Box>
-      <Typography>Projekti nimi: {challenge?.name}</Typography>
-      <Typography>Kontaktisik: {challenge?.contact_person}</Typography>
-      <Typography>Kontaktisiku email: {challenge?.person_email}</Typography>
-      <Typography>Algus kuupäev: {challenge?.begin_date}</Typography>
-      <Typography>Lõpp kuupäev: {challenge?.end_date}</Typography>
-      <Typography>Kirjeldus: {challenge?.description}</Typography>
-      <Typography>Kategooria: {challenge?.category?.name}</Typography>
+      <Typography>Projekti nimi: {challengeContent?.name}</Typography>
+      <Typography>Kontaktisik: {challengeContent?.contact_person}</Typography>
+      <Typography>
+        Kontaktisiku email: {challengeContent?.person_email}
+      </Typography>
+      <Typography>Algus kuupäev: {challengeContent?.begin_date}</Typography>
+      <Typography>Lõpp kuupäev: {challengeContent?.end_date}</Typography>
+      <Typography>Kirjeldus: {challengeContent?.description}</Typography>
+      <Typography>Kategooria: {challengeContent?.category?.name}</Typography>
       <Box>
         Sihtgrupp:
-        {challenge?.target_audience?.map((data) => (
+        {challengeContent?.target_audience?.map((data) => (
           <Typography key={data.id}>{data.name}</Typography>
         ))}
       </Box>
       <Box>
         Eesmärgid:
-        {challenge?.goal?.map((data) => (
+        {challengeContent?.goal?.map((data) => (
           <Typography key={data.id}>{data.name}</Typography>
         ))}
       </Box>

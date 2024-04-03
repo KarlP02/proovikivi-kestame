@@ -7,7 +7,7 @@ import {
   Fade,
 } from "@mui/material";
 import axios from "../api/axios";
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 const registerURL = "/api/auth/register";
 
@@ -22,21 +22,15 @@ const RegisterForm = () => {
   const [alertSeverity, setAlertSeverity] = useState("success");
   const [alertOpen, setAlertOpen] = useState(false);
 
-  const firstNameRef = useRef(null);
-  const lastNameRef = useRef(null);
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
-  const passwordAgainRef = useRef(null);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (passwordRef.current.value === passwordAgainRef.current.value) {
+    if (password === passwordAgain) {
       axios
         .post(registerURL, {
-          firstname: firstNameRef.current.value,
-          lastname: lastNameRef.current.value,
-          email: emailRef.current.value,
-          password: passwordRef.current.value,
+          firstname: firstName,
+          lastname: lastName,
+          email: email,
+          password: password,
         })
         .then(function (response) {
           console.log(response);
@@ -45,15 +39,19 @@ const RegisterForm = () => {
           setEmail("");
           setPassword("");
           setPasswordAgain("");
+
+          setAlertMessage("Registered account successfully");
+          setAlertSeverity("success");
+          setAlertOpen(true);
         })
         .catch(function (error) {
           console.error(error);
+          setAlertMessage("Something went wrong");
+          setAlertSeverity("error");
+          setAlertOpen(true);
         });
-      setAlertMessage("Registered account successfully!");
-      setAlertSeverity("success");
-      setAlertOpen(true);
     } else {
-      setAlertMessage("Passwords do not match!");
+      setAlertMessage("Passwords do not match");
       setAlertSeverity("error");
       setAlertOpen(true);
     }
@@ -80,7 +78,6 @@ const RegisterForm = () => {
             label="First name"
             type="string"
             value={firstName}
-            inputRef={firstNameRef}
             onChange={(e) => setFirstName(e.target.value)}
             required
           />
@@ -89,7 +86,6 @@ const RegisterForm = () => {
             label="Last name"
             type="string"
             value={lastName}
-            inputRef={lastNameRef}
             onChange={(e) => setLastName(e.target.value)}
             required
           />
@@ -98,7 +94,6 @@ const RegisterForm = () => {
             label="Email"
             type="email"
             value={email}
-            inputRef={emailRef}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
@@ -107,7 +102,6 @@ const RegisterForm = () => {
             label="Password"
             type="password"
             value={password}
-            inputRef={passwordRef}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
@@ -116,7 +110,6 @@ const RegisterForm = () => {
             label="Password again"
             type="password"
             value={passwordAgain}
-            inputRef={passwordAgainRef}
             onChange={(e) => setPasswordAgain(e.target.value)}
             required
           />
