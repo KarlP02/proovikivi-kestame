@@ -7,6 +7,7 @@ const challengeListURL = "/challenge/name";
 
 const ChallengeList = () => {
   const navigate = useNavigate();
+  const challengeURL = "challenge";
 
   const [challengeList, setChallengesList] = useState([]);
 
@@ -23,7 +24,8 @@ const ChallengeList = () => {
   }, []);
 
   const changePage = (e) => {
-    navigate(`/${e}`);
+    const challengeId = `/${e}`;
+    navigate(challengeURL + challengeId);
   };
 
   return (
@@ -32,7 +34,7 @@ const ChallengeList = () => {
         <Button
           variant="contained"
           key={index + 1}
-          onClick={() => changePage(challenge)}
+          onClick={() => changePage(index + 1)}
         >
           {challenge}
         </Button>

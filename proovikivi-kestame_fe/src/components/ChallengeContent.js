@@ -1,23 +1,33 @@
+"use client";
+
 import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "../api/axios";
+import { useParams } from "react-router-dom";
 
 const challengeContentURL = "/challenge";
 
-const ChallengeContent = ({ RouteID }) => {
+const ChallengeContent = () => {
+  const { challengeId } = useParams();
+
   const [challengeContent, setChallengeContent] = useState([]);
 
   useEffect(() => {
     const fetchChallenge = async () => {
       try {
-        const response = await axios.get(challengeContentURL + `/${RouteID}`);
+        const response = await axios.get(
+          challengeContentURL + `/${challengeId}`,
+          {
+            cache: false,
+          }
+        );
         setChallengeContent(response.data);
       } catch (error) {
         console.error(error);
       }
     };
     fetchChallenge();
-  }, [RouteID]);
+  }, [challengeId]);
 
   return (
     <Box>

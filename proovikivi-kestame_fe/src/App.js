@@ -7,27 +7,10 @@ import Main from "./pages/Main";
 import Layout from "./components/Layout";
 import RequireAuth from "./components/RequireAuth";
 import Challenge from "./pages/Challenge";
-import { useEffect, useState } from "react";
-import axios from "./api/axios";
 import ChallengePage from "./pages/ChallengePage";
-
-const fetchChallengesURL = "/challenge/name";
+import ProjectFormPage from "./pages/ProjectFormPage";
 
 const App = () => {
-  const [challengeRoutes, setChallengesRoutes] = useState([]);
-
-  useEffect(() => {
-    const fetchChallengeRoutes = async () => {
-      try {
-        const challengeRoutesResponse = await axios.get(fetchChallengesURL);
-        setChallengesRoutes(challengeRoutesResponse.data.name);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchChallengeRoutes();
-  }, []);
-
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -35,18 +18,13 @@ const App = () => {
         <Route path="/" element={<Main />} />
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
-        {challengeRoutes.map((route, index) => (
-          <Route
-            key={index + 1}
-            path={route}
-            element={<ChallengePage RouteID={index + 1} />}
-          />
-        ))}
+        <Route path="challenge/:challengeId" element={<ChallengePage />} />
 
         {/* auth */}
         <Route element={<RequireAuth allowedRoles={["USER"]} />}>
           <Route path="home" element={<Home />} />
-          <Route path="challenge" element={<Challenge />} />
+          <Route path="challenge/:challengeId" element={<Challenge />} />
+          <Route path="project/:projectId" element={<ProjectFormPage />} />
         </Route>
       </Route>
     </Routes>

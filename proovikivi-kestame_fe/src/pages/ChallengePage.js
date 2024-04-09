@@ -1,10 +1,10 @@
 import { Box } from "@mui/material";
 import ChallengeContent from "../components/ChallengeContent";
 
-const ChallengePage = (RouteID) => {
+const ChallengePage = () => {
   return (
     <Box>
-      <ChallengeContent RouteID={RouteID.RouteID} />
+      <ChallengeContent />
     </Box>
   );
 };

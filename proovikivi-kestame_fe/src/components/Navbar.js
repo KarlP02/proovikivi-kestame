@@ -33,7 +33,8 @@ const Navbar = () => {
     if (e === "main") {
       e = "";
     }
-    navigate(`/${e}`);
+    const url = `/${e}`;
+    navigate(url);
   };
 
   return (
