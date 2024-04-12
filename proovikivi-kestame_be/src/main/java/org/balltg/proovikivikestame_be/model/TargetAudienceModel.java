@@ -1,4 +1,4 @@
-package org.balltg.proovikivikestame_be.model.challenge;
+package org.balltg.proovikivikestame_be.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "goal")
-public class GoalModel {
+@Table(name = "target_audience")
+public class TargetAudienceModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

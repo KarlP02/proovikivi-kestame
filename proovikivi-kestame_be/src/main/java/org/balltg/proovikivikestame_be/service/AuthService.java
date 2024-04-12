@@ -1,13 +1,13 @@
 package org.balltg.proovikivikestame_be.service;
 
 import lombok.RequiredArgsConstructor;
-import org.balltg.proovikivikestame_be.dto.AuthRequest;
-import org.balltg.proovikivikestame_be.dto.AuthResponse;
-import org.balltg.proovikivikestame_be.dto.RegisterRequest;
+import org.balltg.proovikivikestame_be.dto.auth.AuthRequest;
+import org.balltg.proovikivikestame_be.dto.auth.AuthResponse;
+import org.balltg.proovikivikestame_be.dto.auth.RegisterRequest;
 import org.balltg.proovikivikestame_be.model.user.RoleModel;
 import org.balltg.proovikivikestame_be.model.user.UserModel;
-import org.balltg.proovikivikestame_be.repository.RoleRepository;
-import org.balltg.proovikivikestame_be.repository.UserRepository;
+import org.balltg.proovikivikestame_be.repository.user.RoleRepository;
+import org.balltg.proovikivikestame_be.repository.user.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;

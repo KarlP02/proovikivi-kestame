@@ -1,9 +1,8 @@
 package org.balltg.proovikivikestame_be.service.challenge;
 
 import lombok.RequiredArgsConstructor;
-import org.balltg.proovikivikestame_be.model.challenge.GoalModel;
+import org.balltg.proovikivikestame_be.model.GoalModel;
 import org.balltg.proovikivikestame_be.repository.challenge.GoalRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

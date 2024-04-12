@@ -1,4 +1,4 @@
-package org.balltg.proovikivikestame_be.dto;
+package org.balltg.proovikivikestame_be.dto.challenge;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

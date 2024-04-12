@@ -6,9 +6,10 @@ import Login from "./pages/Login";
 import Main from "./pages/Main";
 import Layout from "./components/Layout";
 import RequireAuth from "./components/RequireAuth";
-import Challenge from "./pages/Challenge";
 import ChallengePage from "./pages/ChallengePage";
 import ProjectFormPage from "./pages/ProjectFormPage";
+import ProjectPage from "./pages/ProjectPage";
+import ChallengeFormPage from "./pages/ChallengeFormPage";
 
 const App = () => {
   return (
@@ -19,12 +20,13 @@ const App = () => {
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
         <Route path="challenge/:challengeId" element={<ChallengePage />} />
+        <Route path="project/:projectId" element={<ProjectPage />} />
 
         {/* auth */}
         <Route element={<RequireAuth allowedRoles={["USER"]} />}>
           <Route path="home" element={<Home />} />
-          <Route path="challenge/:challengeId" element={<Challenge />} />
-          <Route path="project/:projectId" element={<ProjectFormPage />} />
+          <Route path="challenge" element={<ChallengeFormPage />} />
+          <Route path="project" element={<ProjectFormPage />} />
         </Route>
       </Route>
     </Routes>

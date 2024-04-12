@@ -1,7 +1,7 @@
 package org.balltg.proovikivikestame_be.controller;
 
 import org.balltg.proovikivikestame_be.model.user.UserModel;
-import org.balltg.proovikivikestame_be.service.UserService;
+import org.balltg.proovikivikestame_be.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

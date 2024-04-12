@@ -1,12 +1,12 @@
-package org.balltg.proovikivikestame_be.dto;
+package org.balltg.proovikivikestame_be.dto.challenge;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.balltg.proovikivikestame_be.model.challenge.CategoryModel;
-import org.balltg.proovikivikestame_be.model.challenge.GoalModel;
-import org.balltg.proovikivikestame_be.model.challenge.TargetAudienceModel;
+import org.balltg.proovikivikestame_be.model.GoalModel;
+import org.balltg.proovikivikestame_be.model.TargetAudienceModel;
 
 import java.time.LocalDate;
 import java.util.Set;

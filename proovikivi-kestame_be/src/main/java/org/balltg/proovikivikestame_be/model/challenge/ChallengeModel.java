@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.balltg.proovikivikestame_be.model.GoalModel;
+import org.balltg.proovikivikestame_be.model.TargetAudienceModel;
 import org.balltg.proovikivikestame_be.model.user.UserModel;
 import org.springframework.format.annotation.DateTimeFormat;
 

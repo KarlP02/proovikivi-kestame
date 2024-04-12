@@ -1,6 +1,5 @@
-package org.balltg.proovikivikestame_be.repository;
+package org.balltg.proovikivikestame_be.repository.user;
 
-import org.balltg.proovikivikestame_be.model.user.RoleModel;
 import org.balltg.proovikivikestame_be.model.user.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

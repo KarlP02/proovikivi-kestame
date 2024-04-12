@@ -1,14 +1,13 @@
 package org.balltg.proovikivikestame_be.service.challenge;
 
 import lombok.RequiredArgsConstructor;
-import org.balltg.proovikivikestame_be.dto.ChallengeNameResponse;
-import org.balltg.proovikivikestame_be.dto.ChallengeRequest;
-import org.balltg.proovikivikestame_be.dto.ChallengeResponse;
+import org.balltg.proovikivikestame_be.dto.challenge.ChallengeNameResponse;
+import org.balltg.proovikivikestame_be.dto.challenge.ChallengeRequest;
+import org.balltg.proovikivikestame_be.dto.challenge.ChallengeResponse;
 import org.balltg.proovikivikestame_be.model.challenge.ChallengeModel;
-import org.balltg.proovikivikestame_be.model.challenge.GoalModel;
-import org.balltg.proovikivikestame_be.model.challenge.TargetAudienceModel;
-import org.balltg.proovikivikestame_be.model.user.UserModel;
-import org.balltg.proovikivikestame_be.repository.UserRepository;
+import org.balltg.proovikivikestame_be.model.GoalModel;
+import org.balltg.proovikivikestame_be.model.TargetAudienceModel;
+import org.balltg.proovikivikestame_be.repository.user.UserRepository;
 import org.balltg.proovikivikestame_be.repository.challenge.CategoryRepository;
 import org.balltg.proovikivikestame_be.repository.challenge.ChallengeRepository;
 import org.balltg.proovikivikestame_be.repository.challenge.GoalRepository;
@@ -19,7 +18,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 

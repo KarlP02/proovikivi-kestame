@@ -1,13 +1,9 @@
-package org.balltg.proovikivikestame_be.dto;
+package org.balltg.proovikivikestame_be.dto.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.balltg.proovikivikestame_be.model.user.RoleModel;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
 @Builder

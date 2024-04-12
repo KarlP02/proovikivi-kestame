@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import React from "react";
 import ChallengeForm from "../components/ChallengeForm";
 
-const Challenge = () => {
+const ChallengeFormPage = () => {
   return (
     <Box className="challenge_form_page">
       <ChallengeForm />
@@ -11,4 +11,4 @@ const Challenge = () => {
   );
 };
 
-export default Challenge;
+export default ChallengeFormPage;

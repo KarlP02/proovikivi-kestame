@@ -1,9 +1,8 @@
-package org.balltg.proovikivikestame_be.service;
+package org.balltg.proovikivikestame_be.service.user;
 
 import lombok.RequiredArgsConstructor;
 import org.balltg.proovikivikestame_be.model.user.UserModel;
-import org.balltg.proovikivikestame_be.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.balltg.proovikivikestame_be.repository.user.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,14 +1,16 @@
 "use client";
 
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "../api/axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const challengeContentURL = "/challenge";
 
 const ChallengeContent = () => {
   const { challengeId } = useParams();
+  const navigate = useNavigate();
+  const projectFormPage = "/project";
 
   const [challengeContent, setChallengeContent] = useState([]);
 
@@ -28,6 +30,10 @@ const ChallengeContent = () => {
     };
     fetchChallenge();
   }, [challengeId]);
+
+  const changePage = () => {
+    navigate(projectFormPage);
+  };
 
   return (
     <Box>
@@ -52,6 +58,9 @@ const ChallengeContent = () => {
           <Typography key={data.id}>{data.name}</Typography>
         ))}
       </Box>
+      <Button variant="contained" onClick={() => changePage()}>
+        Loo projekt
+      </Button>
     </Box>
   );
 };
