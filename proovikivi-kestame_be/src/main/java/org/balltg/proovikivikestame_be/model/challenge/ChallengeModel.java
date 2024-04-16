@@ -41,7 +41,7 @@ public class ChallengeModel {
 
     private String question;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private UserModel user;
 

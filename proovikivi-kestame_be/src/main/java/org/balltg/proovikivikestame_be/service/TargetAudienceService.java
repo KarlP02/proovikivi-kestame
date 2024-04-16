@@ -1,8 +1,8 @@
-package org.balltg.proovikivikestame_be.service.challenge;
+package org.balltg.proovikivikestame_be.service;
 
 import lombok.RequiredArgsConstructor;
 import org.balltg.proovikivikestame_be.model.TargetAudienceModel;
-import org.balltg.proovikivikestame_be.repository.challenge.TargetAudienceRepository;
+import org.balltg.proovikivikestame_be.repository.TargetAudienceRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

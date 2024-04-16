@@ -6,9 +6,9 @@ import {
   Box,
   Fade,
 } from "@mui/material";
-import axios from "../api/axios";
+import axios from "../../api/axios";
 import { useState } from "react";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const loginURL = "/api/auth/authenticate";

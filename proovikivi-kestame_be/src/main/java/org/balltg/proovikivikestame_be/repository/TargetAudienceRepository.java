@@ -1,4 +1,4 @@
-package org.balltg.proovikivikestame_be.repository.challenge;
+package org.balltg.proovikivikestame_be.repository;
 
 import org.balltg.proovikivikestame_be.model.TargetAudienceModel;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,6 +1,6 @@
-import "../styles/RegisterStyles.css";
+import "../../styles/RegisterStyles.css";
 import { Box } from "@mui/material";
-import RegisterForm from "../components/RegisterForm";
+import RegisterForm from "../../components/account/RegisterForm";
 
 const Register = () => {
   return (

@@ -1,7 +1,7 @@
 import { Box, Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "../api/axios";
+import axios from "../../api/axios";
 
 const challengeListURL = "/challenge/name";
 

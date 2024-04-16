@@ -10,8 +10,8 @@ import org.balltg.proovikivikestame_be.model.TargetAudienceModel;
 import org.balltg.proovikivikestame_be.repository.user.UserRepository;
 import org.balltg.proovikivikestame_be.repository.challenge.CategoryRepository;
 import org.balltg.proovikivikestame_be.repository.challenge.ChallengeRepository;
-import org.balltg.proovikivikestame_be.repository.challenge.GoalRepository;
-import org.balltg.proovikivikestame_be.repository.challenge.TargetAudienceRepository;
+import org.balltg.proovikivikestame_be.repository.GoalRepository;
+import org.balltg.proovikivikestame_be.repository.TargetAudienceRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

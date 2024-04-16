@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.balltg.proovikivikestame_be.model.GoalModel;
+import org.balltg.proovikivikestame_be.model.user.UserModel;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -26,6 +27,10 @@ public class ProjectModel {
     private String description;
 
     private String keywords;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private UserModel user;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "main_type_id")

@@ -1,9 +1,10 @@
+import "../../styles/ProjectStyles.css";
 import { Box } from "@mui/material";
-import ProjectForm from "../components/ProjectForm";
+import ProjectForm from "../../components/project/ProjectForm";
 
 const ProjectFormPage = () => {
   return (
-    <Box>
+    <Box className="project_form_page">
       <ProjectForm />
     </Box>
   );

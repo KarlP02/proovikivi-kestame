@@ -2,7 +2,7 @@
 
 import { Box, Typography, Button } from "@mui/material";
 import { useEffect, useState } from "react";
-import axios from "../api/axios";
+import axios from "../../api/axios";
 import { useParams, useNavigate } from "react-router-dom";
 
 const challengeContentURL = "/challenge";

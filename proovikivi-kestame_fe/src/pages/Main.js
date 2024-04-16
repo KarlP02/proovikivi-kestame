@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import ChallengeList from "../components/ChallengeList";
+import ChallengeList from "../components/challenge/ChallengeList";
 
 const Main = () => {
   return (

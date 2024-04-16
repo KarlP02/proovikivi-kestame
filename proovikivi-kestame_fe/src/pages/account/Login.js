@@ -1,6 +1,6 @@
-import "../styles/LoginStyles.css";
+import "../../styles/LoginStyles.css";
 import { Box } from "@mui/material";
-import LoginForm from "../components/LoginForm";
+import LoginForm from "../../components/account/LoginForm";
 
 const Login = () => {
   return (

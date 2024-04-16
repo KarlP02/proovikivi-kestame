@@ -6,7 +6,7 @@ import {
   Box,
   Fade,
 } from "@mui/material";
-import axios from "../api/axios";
+import axios from "../../api/axios";
 import { useState } from "react";
 
 const registerURL = "/api/auth/register";

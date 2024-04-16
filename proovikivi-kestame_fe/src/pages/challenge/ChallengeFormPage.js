@@ -1,7 +1,7 @@
-import "../styles/ChallengeStyles.css";
+import "../../styles/ChallengeStyles.css";
 import { Box } from "@mui/material";
 import React from "react";
-import ChallengeForm from "../components/ChallengeForm";
+import ChallengeForm from "../../components/challenge/ChallengeForm";
 
 const ChallengeFormPage = () => {
   return (

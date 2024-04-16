@@ -10,8 +10,8 @@ import org.balltg.proovikivikestame_be.model.GoalModel;
 import org.balltg.proovikivikestame_be.model.TargetAudienceModel;
 import org.balltg.proovikivikestame_be.service.challenge.CategoryService;
 import org.balltg.proovikivikestame_be.service.challenge.ChallengeService;
-import org.balltg.proovikivikestame_be.service.challenge.GoalService;
-import org.balltg.proovikivikestame_be.service.challenge.TargetAudienceService;
+import org.balltg.proovikivikestame_be.service.GoalService;
+import org.balltg.proovikivikestame_be.service.TargetAudienceService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +24,6 @@ public class ChallengeController {
     private final ChallengeService challengeService;
     private final CategoryService categoryService;
     private final TargetAudienceService targetAudienceService;
-    private final GoalService goalService;
 
     @GetMapping("/category")
     public List<CategoryModel> findAllCategories() {
@@ -34,11 +33,6 @@ public class ChallengeController {
     @GetMapping("/targetaudience")
     public List<TargetAudienceModel> findAllTargetAudiences() {
         return targetAudienceService.findAll();
-    }
-
-    @GetMapping("/goal")
-    public List<GoalModel> findAllGoals() {
-        return goalService.findAll();
     }
 
     @GetMapping

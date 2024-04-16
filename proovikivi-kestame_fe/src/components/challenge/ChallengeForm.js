@@ -11,15 +11,15 @@ import {
   ToggleButtonGroup,
   ToggleButton,
 } from "@mui/material";
-import axios from "../api/axios";
+import axios from "../../api/axios";
 import { useState, useRef, useEffect } from "react";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
 const challengeURL = "/challenge/category";
 const targetAudienceURL = "/challenge/targetaudience";
-const goalURL = "/challenge/goal";
+const goalURL = "/goal";
 const challengePostURL = "/challenge/upload";
 
 const ChallengeForm = () => {

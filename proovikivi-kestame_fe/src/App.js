@@ -1,15 +1,15 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Register from "./pages/Register";
+import Register from "./pages/account/Register";
 import Home from "./pages/Home";
-import Login from "./pages/Login";
+import Login from "./pages/account/Login";
 import Main from "./pages/Main";
 import Layout from "./components/Layout";
 import RequireAuth from "./components/RequireAuth";
-import ChallengePage from "./pages/ChallengePage";
-import ProjectFormPage from "./pages/ProjectFormPage";
-import ProjectPage from "./pages/ProjectPage";
-import ChallengeFormPage from "./pages/ChallengeFormPage";
+import ChallengePage from "./pages/challenge/ChallengePage";
+import ProjectFormPage from "./pages/project/ProjectFormPage";
+import ProjectPage from "./pages/project/ProjectPage";
+import ChallengeFormPage from "./pages/challenge/ChallengeFormPage";
 
 const App = () => {
   return (

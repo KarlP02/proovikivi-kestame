@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import ChallengeContent from "../components/ChallengeContent";
+import ChallengeContent from "../../components/challenge/ChallengeContent";
 
 const ChallengePage = () => {
   return (
