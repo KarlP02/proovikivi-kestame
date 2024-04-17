@@ -27,6 +27,7 @@ public class AuthService {
     public AuthResponse register(RegisterRequest request) {
         Set<RoleModel> roles = new HashSet<>();
         roles.add(roleRepository.findByName("USER"));
+        roles.add(roleRepository.findByName(request.getRole()));
 
         var user = UserModel.builder()
                 .firstname(request.getFirstname())
@@ -37,7 +38,9 @@ public class AuthService {
                 .roles(roles)
                 .build();
         userRepository.save(user);
+
         var jwtToken = jwtService.generateToken(user);
+
         return AuthResponse.builder()
                 .token(jwtToken)
                 .build();
@@ -50,13 +53,17 @@ public class AuthService {
                         request.getPassword()
                 )
         );
+
         var user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow();
+
         Set<RoleModel> role = user.getRoles();
         String roleName = role.toString();
         Map<String, Object> rolesMap = new HashMap<>();
         rolesMap.put("role", roleName);
+
         var jwtToken = jwtService.generateToken(rolesMap, user);
+
         return AuthResponse.builder()
                 .token(jwtToken)
                 .build();

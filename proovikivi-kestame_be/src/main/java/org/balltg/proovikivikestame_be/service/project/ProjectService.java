@@ -72,7 +72,7 @@ public class ProjectService {
         var project = projectRepository.findAll();
 
         return ProjectNameResponse.builder()
-                .name(project.stream().map(ProjectModel::getName).collect(Collectors.toList()))
+                .name(project.stream().map(ProjectModel::getName).toList())
                 .build();
     }
 }

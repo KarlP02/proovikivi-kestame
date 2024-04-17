@@ -81,7 +81,7 @@ public class ChallengeService {
         var challenge = challengeRepository.findAll();
 
         return  ChallengeNameResponse.builder()
-                .name(challenge.stream().map(ChallengeModel::getName).collect(Collectors.toList()))
+                .name(challenge.stream().map(ChallengeModel::getName).toList())
                 .build();
     }
 }

@@ -5,22 +5,41 @@ import {
   TextField,
   Box,
   Fade,
+  InputLabel,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import axios from "../../api/axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const registerURL = "/api/auth/register";
+const roleURL = "/role/selectable";
 
 const RegisterForm = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [role, setRole] = useState("");
   const [password, setPassword] = useState("");
   const [passwordAgain, setPasswordAgain] = useState("");
+
+  const [roleData, setRoleData] = useState([]);
 
   const [alertMessage, setAlertMessage] = useState("");
   const [alertSeverity, setAlertSeverity] = useState("success");
   const [alertOpen, setAlertOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchinfo = async () => {
+      try {
+        const response = await axios.get(roleURL);
+        setRoleData(response.data.name);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchinfo();
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,6 +49,7 @@ const RegisterForm = () => {
           firstname: firstName,
           lastname: lastName,
           email: email,
+          role: role,
           password: password,
         })
         .then(function (response) {
@@ -37,6 +57,7 @@ const RegisterForm = () => {
           setFirstName("");
           setLastName("");
           setEmail("");
+          setRole("");
           setPassword("");
           setPasswordAgain("");
 
@@ -71,8 +92,8 @@ const RegisterForm = () => {
           {alertMessage}
         </Alert>
       </Fade>
-      <form onSubmit={handleSubmit}>
-        <FormControl className="register_form_main">
+      <form className="register_form_main" onSubmit={handleSubmit}>
+        <FormControl className="register_form_1">
           <TextField
             className="first_name"
             label="First name"
@@ -97,6 +118,25 @@ const RegisterForm = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
+        </FormControl>
+        <FormControl className="register_form_2">
+          <InputLabel id="role-label">Vali roll</InputLabel>
+          <Select
+            className="role-type"
+            labelId="role-label"
+            label="Vali roll"
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            required
+          >
+            {roleData.map((role, index) => (
+              <MenuItem key={index + 1} value={index + 1}>
+                {role}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        <FormControl className="register_form_3">
           <TextField
             className="password"
             label="Password"
