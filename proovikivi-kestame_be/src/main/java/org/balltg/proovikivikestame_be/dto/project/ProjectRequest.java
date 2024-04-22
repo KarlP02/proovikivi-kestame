@@ -12,12 +12,13 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProjectRequest {
+    private String user;
     private String name;
     private String description;
     private String keywords;
-    private String email;
     private Long mainType;
     private Long contribution;
     private Long type;
     private Set<Long> goal;
+    private Long challengeId;
 }

@@ -130,7 +130,7 @@ const RegisterForm = () => {
             required
           >
             {roleData.map((role, index) => (
-              <MenuItem key={index + 1} value={index + 1}>
+              <MenuItem key={index + 1} value={role}>
                 {role}
               </MenuItem>
             ))}

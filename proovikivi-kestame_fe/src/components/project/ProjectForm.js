@@ -13,13 +13,21 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
+import useAuth from "../../hooks/useAuth";
+import { useLocation } from "react-router-dom";
 
+const ProjectPostURL = "/project/upload";
 const mainTypeURL = "/project/main-type";
 const contributionURL = "/project/contribution";
 const typeURL = "/project/type";
 const goalURL = "/goal";
 
 const ProjectForm = () => {
+  const { auth } = useAuth();
+
+  const location = useLocation();
+  const { challengeId } = location.state || {};
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [keywords, setKeywords] = useState("");
@@ -57,6 +65,37 @@ const ProjectForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (auth.email !== undefined || challengeId !== undefined) {
+      axios
+        .post(ProjectPostURL, {
+          user: auth.email,
+          name: name,
+          description: description,
+          keywords: keywords,
+          mainType: mainType,
+          contribution: contribution,
+          type: type,
+          goal: goal,
+          challengeId: challengeId,
+        })
+        .then(function (response) {
+          console.log(response);
+          setAlertMessage("Form submitted successfully");
+          setAlertSeverity("success");
+          setAlertOpen(true);
+        })
+        .catch(function (error) {
+          console.error(error);
+          setAlertMessage("Check that every field is filled");
+          setAlertSeverity("error");
+          setAlertOpen(true);
+        });
+    } else {
+      setAlertMessage("Need to be logged in to submit");
+      setAlertSeverity("error");
+      setAlertOpen(true);
+    }
+    setTimeout(() => setAlertOpen(false), 5000);
   };
 
   return (

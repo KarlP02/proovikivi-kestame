@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.balltg.proovikivikestame_be.model.GoalModel;
+import org.balltg.proovikivikestame_be.model.challenge.ChallengeModel;
 import org.balltg.proovikivikestame_be.model.project.ContributionModel;
 import org.balltg.proovikivikestame_be.model.project.MainTypeModel;
 import org.balltg.proovikivikestame_be.model.project.TypeModel;
@@ -23,4 +24,5 @@ public class ProjectResponse {
     private ContributionModel contribution;
     private TypeModel type;
     private Set<GoalModel> goal;
+    private ChallengeModel challenge;
 }

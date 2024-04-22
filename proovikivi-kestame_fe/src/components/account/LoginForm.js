@@ -12,6 +12,7 @@ import useAuth from "../../hooks/useAuth";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const loginURL = "/api/auth/authenticate";
+const register = "/register";
 
 const LoginForm = () => {
   const { setAuth } = useAuth();
@@ -19,7 +20,6 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  const register = "/register";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

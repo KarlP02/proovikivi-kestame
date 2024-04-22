@@ -4,26 +4,35 @@ import { Box, Typography, Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
 import { useParams, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const challengeContentURL = "/challenge";
+const projectListURL = "/project/challenge";
+const projectFormPage = "/project";
+const projectPage = "/project";
 
 const ChallengeContent = () => {
+  const { auth } = useAuth();
+
   const { challengeId } = useParams();
   const navigate = useNavigate();
-  const projectFormPage = "/project";
+  const challengeLink = `/${challengeId}`;
 
   const [challengeContent, setChallengeContent] = useState([]);
+  const [projectList, setProjectList] = useState([]);
 
   useEffect(() => {
     const fetchChallenge = async () => {
       try {
-        const response = await axios.get(
-          challengeContentURL + `/${challengeId}`,
+        const ChallengeResponse = await axios.get(
+          challengeContentURL + challengeLink,
           {
             cache: false,
           }
         );
-        setChallengeContent(response.data);
+        const ProjectResponse = await axios.get(projectListURL + challengeLink);
+        setChallengeContent(ChallengeResponse.data);
+        setProjectList(ProjectResponse.data.name);
       } catch (error) {
         console.error(error);
       }
@@ -31,8 +40,14 @@ const ChallengeContent = () => {
     fetchChallenge();
   }, [challengeId]);
 
-  const changePage = () => {
-    navigate(projectFormPage);
+  const changePage = (e) => {
+    if (e == "formpage") {
+      navigate(projectFormPage, {
+        state: { challengeId: challengeId },
+      });
+    } else {
+      navigate(e);
+    }
   };
 
   return (
@@ -58,9 +73,24 @@ const ChallengeContent = () => {
           <Typography key={data.id}>{data.name}</Typography>
         ))}
       </Box>
-      <Button variant="contained" onClick={() => changePage()}>
-        Loo projekt
-      </Button>
+      {auth.email && (
+        <Box>
+          <Button variant="contained" onClick={() => changePage("formpage")}>
+            Loo projekt
+          </Button>
+          <Box>
+            {projectList.map((project, index) => (
+              <Button
+                variant="contained"
+                key={index + 1}
+                onClick={() => changePage(projectPage + `/${index + 1}`)}
+              >
+                {project}
+              </Button>
+            ))}
+          </Box>
+        </Box>
+      )}
     </Box>
   );
 };

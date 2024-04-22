@@ -12,6 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ChallengeRequest {
+    private String user;
     private String name;
     private String contact_person;
     private String person_email;
@@ -19,7 +20,6 @@ public class ChallengeRequest {
     private String end_date;
     private String description;
     private String question;
-    private String email;
     private Long category;
     private Set<Long> target_audience;
     private Set<Long> goal;

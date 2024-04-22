@@ -68,6 +68,7 @@ const ChallengeForm = () => {
     if (auth.email !== undefined) {
       axios
         .post(challengePostURL, {
+          user: auth.email,
           name: name,
           contact_person: contactPerson,
           person_email: personEmail,
@@ -75,7 +76,6 @@ const ChallengeForm = () => {
           end_date: endDateRef.current.value,
           description: description,
           question: question,
-          email: auth.email,
           category: category,
           target_audience: targetAudience,
           goal: goal,

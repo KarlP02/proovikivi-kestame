@@ -56,6 +56,11 @@ public class ProjectController {
         return projectService.findProjectById(index);
     }
 
+    @GetMapping("/challenge/{challengeId}")
+    public ProjectNameResponse findProjectsByChallengeId(@PathVariable Long challengeId) {
+        return projectService.findProjectsByChallengeId(challengeId);
+    }
+
     @PostMapping("/upload")
     public void uploadProject(@RequestBody ProjectRequest request) {
         projectService.uploadProject(request);

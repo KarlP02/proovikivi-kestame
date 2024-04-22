@@ -36,12 +36,13 @@ public class ChallengeService {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
-        var user = userRepository.findByEmail(request.getEmail()).orElseThrow();
+        var user = userRepository.findByEmail(request.getUser()).orElseThrow();
         var category = categoryRepository.findById(request.getCategory()).orElseThrow();
         var begin_date = LocalDate.parse(request.getBegin_date(), formatter);
         var end_date = LocalDate.parse(request.getEnd_date(), formatter);
 
         var challenge = ChallengeModel.builder()
+                .user(user)
                 .name(request.getName())
                 .contact_person(request.getContact_person())
                 .person_email(request.getPerson_email())
@@ -49,7 +50,6 @@ public class ChallengeService {
                 .end_date(end_date)
                 .description(request.getDescription())
                 .question(request.getQuestion())
-                .user(user)
                 .category(category)
                 .target_audience(target_audiences)
                 .goal(goals)

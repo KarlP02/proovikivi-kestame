@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "../../api/axios";
 
 const challengeListURL = "/challenge/name";
+const challengeURL = "/challenge";
 
 const ChallengeList = () => {
   const navigate = useNavigate();
-  const challengeURL = "challenge";
 
   const [challengeList, setChallengesList] = useState([]);
 
