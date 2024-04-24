@@ -113,8 +113,8 @@ const ChallengeForm = () => {
           {alertMessage}
         </Alert>
       </Fade>
-      <form className="challenge_form_main" onSubmit={handleSubmit}>
-        <FormControl className="challenge_form_1">
+      <form className="challenge-form-main" onSubmit={handleSubmit}>
+        <FormControl className="challenge-form-1">
           <TextField
             className="name"
             label="Väljakutse nimi"
@@ -140,7 +140,7 @@ const ChallengeForm = () => {
             required
           />
         </FormControl>
-        <FormControl className="challenge_form_1">
+        <FormControl className="challenge-form-2">
           <InputLabel id="category-label">Väljakutse kategooria</InputLabel>
           <Select
             className="category"

@@ -72,7 +72,7 @@ const LoginForm = () => {
         </Alert>
       </Fade>
       <form onSubmit={handleSubmit}>
-        <FormControl className="login_form_main">
+        <FormControl className="login-form-main">
           <TextField
             className="email"
             label="Email"

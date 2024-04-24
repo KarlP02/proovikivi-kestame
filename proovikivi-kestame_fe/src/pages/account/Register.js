@@ -4,7 +4,7 @@ import RegisterForm from "../../components/account/RegisterForm";
 
 const Register = () => {
   return (
-    <Box className="register_form_page">
+    <Box className="register-form-page">
       <RegisterForm />
     </Box>
   );

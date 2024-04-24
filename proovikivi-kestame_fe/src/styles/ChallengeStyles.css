@@ -1,20 +1,82 @@
-.challenge_form_page {
+/* challenge form page */
+.challenge-form-page {
     display: flex;
     /* flex-direction: column; */
     justify-content: center;
     align-items: center;
 }
 
-.challenge_form_main {
+.challenge-form-main {
     display: flex;
     flex-direction: column;
 }
 
-.challenge_form_1 {
+.challenge-form-1 {
     row-gap: 8px;
     padding-bottom: 8px !important;
 }
 
-.challenge_form_2 {
+.challenge-form-2 {
     row-gap: 8px;
+}
+
+
+/* challenge content page */
+.challenge-content-main {
+    display: flex;
+    justify-content: center;
+    background-color:#ededed;
+}
+
+.challenge-content {
+    width: 90vw;
+}
+
+.general-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.challenge-info {
+    width: 40vw;
+}
+
+.media {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    height: 22.5vw;
+    width: 40vw;
+}
+
+.overview {
+    margin-top: 10px;
+    padding: 15px;
+    background-color: darkblue;
+    height: 25vh;
+}
+
+.main-info {
+    margin-top: 10px;
+    height: 80vh;
+}
+
+.main-info-text {
+    padding: 20px;
+}
+
+.project-section {
+    margin-bottom: 10vh;
+}
+
+.project-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.created-project {
+    margin-top: 20px;
 }

@@ -5,7 +5,7 @@ import ChallengeForm from "../../components/challenge/ChallengeForm";
 
 const ChallengeFormPage = () => {
   return (
-    <Box className="challenge_form_page">
+    <Box className="challenge-form-page">
       <ChallengeForm />
     </Box>
   );

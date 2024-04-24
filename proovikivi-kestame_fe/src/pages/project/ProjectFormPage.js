@@ -4,7 +4,7 @@ import ProjectForm from "../../components/project/ProjectForm";
 
 const ProjectFormPage = () => {
   return (
-    <Box className="project_form_page">
+    <Box className="project-form-page">
       <ProjectForm />
     </Box>
   );

@@ -1,28 +1,28 @@
-.project_form_page {
+.project-form-page {
     display: flex;
     /* flex-direction: column; */
     justify-content: center;
     align-items: center;
 }
 
-.project_form_main {
+.project-form-main {
     display: flex;
     flex-direction: column;
 }
 
-.project_form_1 {
+.project-form-1 {
     row-gap: 8px;
     padding-bottom: 8px !important;
 }
 
-.project_form_2 {
+.project-form-2 {
     padding-bottom: 8px !important;
 }
 
-.project_form_3 {
+.project-form-3 {
     padding-bottom: 8px !important;
 }
 
-.project_form_4 {
+.project-form-4 {
     row-gap: 8px;
 }

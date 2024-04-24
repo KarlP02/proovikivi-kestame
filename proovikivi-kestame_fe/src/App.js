@@ -20,13 +20,13 @@ const App = () => {
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
         <Route path="challenge/:challengeId" element={<ChallengePage />} />
-        <Route path="project/:projectId" element={<ProjectPage />} />
 
         {/* auth */}
         <Route element={<RequireAuth allowedRoles={["USER"]} />}>
           <Route path="home" element={<Home />} />
           <Route path="challenge" element={<ChallengeFormPage />} />
           <Route path="project" element={<ProjectFormPage />} />
+          <Route path="project/:projectId" element={<ProjectPage />} />
         </Route>
       </Route>
     </Routes>

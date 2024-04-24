@@ -111,8 +111,8 @@ const ProjectForm = () => {
           {alertMessage}
         </Alert>
       </Fade>
-      <form className="project_form_main" onSubmit={handleSubmit}>
-        <FormControl className="project_form_1">
+      <form className="project-form-main" onSubmit={handleSubmit}>
+        <FormControl className="project-form-1">
           <TextField
             className="name"
             label="Projekti/algatuse/tegevuse nimi"
@@ -139,7 +139,7 @@ const ProjectForm = () => {
             onChange={(e) => setKeywords(e.target.value)}
           />
         </FormControl>
-        <FormControl className="project_form_2">
+        <FormControl className="project-form-2">
           <InputLabel id="main-type-label">Algatuse peamine tüüp</InputLabel>
           <Select
             className="main-type"
@@ -156,7 +156,7 @@ const ProjectForm = () => {
             ))}
           </Select>
         </FormControl>
-        <FormControl className="project_form_3">
+        <FormControl className="project-form-3">
           <InputLabel id="contribution-label">Panus</InputLabel>
           <Select
             className="contribution"
@@ -173,7 +173,7 @@ const ProjectForm = () => {
             ))}
           </Select>
         </FormControl>
-        <FormControl className="project_form_4">
+        <FormControl className="project-form-4">
           <InputLabel id="type-label">Algatuse tüüp</InputLabel>
           <Select
             className="type"

@@ -1,4 +1,11 @@
-import { AppBar, Box, Button, Toolbar } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Button,
+  ThemeProvider,
+  Toolbar,
+  createTheme,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { useEffect, useState } from "react";
@@ -37,22 +44,32 @@ const Navbar = () => {
     navigate(url);
   };
 
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#ffffff",
+      },
+    },
+  });
+
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <Box>
-          {pages.map((page) => (
-            <Button
-              sx={{ color: "white" }}
-              key={page}
-              onClick={() => changePage(page)}
-            >
-              {page}
-            </Button>
-          ))}
-        </Box>
-      </Toolbar>
-    </AppBar>
+    <ThemeProvider theme={theme}>
+      <AppBar position="static" color="primary">
+        <Toolbar>
+          <Box>
+            {pages.map((page) => (
+              <Button
+                sx={{ color: "black" }}
+                key={page}
+                onClick={() => changePage(page)}
+              >
+                {page}
+              </Button>
+            ))}
+          </Box>
+        </Toolbar>
+      </AppBar>
+    </ThemeProvider>
   );
 };
 

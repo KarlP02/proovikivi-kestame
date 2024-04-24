@@ -92,8 +92,8 @@ const RegisterForm = () => {
           {alertMessage}
         </Alert>
       </Fade>
-      <form className="register_form_main" onSubmit={handleSubmit}>
-        <FormControl className="register_form_1">
+      <form className="register-form-main" onSubmit={handleSubmit}>
+        <FormControl className="register-form-1">
           <TextField
             className="first_name"
             label="First name"
@@ -119,7 +119,7 @@ const RegisterForm = () => {
             required
           />
         </FormControl>
-        <FormControl className="register_form_2">
+        <FormControl className="register-form-2">
           <InputLabel id="role-label">Vali roll</InputLabel>
           <Select
             className="role-type"
@@ -136,7 +136,7 @@ const RegisterForm = () => {
             ))}
           </Select>
         </FormControl>
-        <FormControl className="register_form_3">
+        <FormControl className="register-form-3">
           <TextField
             className="password"
             label="Password"

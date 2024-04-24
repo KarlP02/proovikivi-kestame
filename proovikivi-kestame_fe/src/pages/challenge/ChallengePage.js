@@ -3,7 +3,7 @@ import ChallengeContent from "../../components/challenge/ChallengeContent";
 
 const ChallengePage = () => {
   return (
-    <Box>
+    <Box className="challenge-content-main">
       <ChallengeContent />
     </Box>
   );

@@ -22,7 +22,7 @@ const ChallengeContent = () => {
   const [projectList, setProjectList] = useState([]);
 
   useEffect(() => {
-    const fetchChallenge = async () => {
+    const fetchInfo = async () => {
       try {
         const ChallengeResponse = await axios.get(
           challengeContentURL + challengeLink,
@@ -37,11 +37,11 @@ const ChallengeContent = () => {
         console.error(error);
       }
     };
-    fetchChallenge();
-  }, [challengeId]);
+    fetchInfo();
+  }, [challengeLink]);
 
   const changePage = (e) => {
-    if (e == "formpage") {
+    if (e === "formpage") {
       navigate(projectFormPage, {
         state: { challengeId: challengeId },
       });
@@ -51,34 +51,55 @@ const ChallengeContent = () => {
   };
 
   return (
-    <Box>
-      <Typography>Projekti nimi: {challengeContent?.name}</Typography>
+    <Box className="challenge-content">
+      <Box className="general-info">
+        <Box className="challenge-info">
+          <Typography variant="h2" color="#9525c4">
+            {challengeContent?.name}
+          </Typography>
+          Toimumisaeg:
+          <Typography>
+            {challengeContent?.begin_date} - {challengeContent?.end_date}
+          </Typography>
+          Panustab eesmärkidesse:
+          {challengeContent?.goal?.map((data) => (
+            <Typography key={data.id}>{data.name}</Typography>
+          ))}
+          Sihtgrupid:
+          {challengeContent?.target_audience?.map((data) => (
+            <Typography key={data.id}>{data.name}</Typography>
+          ))}
+        </Box>
+        <Box className="media">
+          <Typography color="red">video or picture</Typography>
+        </Box>
+      </Box>
       <Typography>Kontaktisik: {challengeContent?.contact_person}</Typography>
       <Typography>
         Kontaktisiku email: {challengeContent?.person_email}
       </Typography>
-      <Typography>Algus kuupäev: {challengeContent?.begin_date}</Typography>
-      <Typography>Lõpp kuupäev: {challengeContent?.end_date}</Typography>
-      <Typography>Kirjeldus: {challengeContent?.description}</Typography>
       <Typography>Kategooria: {challengeContent?.category?.name}</Typography>
-      <Box>
-        Sihtgrupp:
-        {challengeContent?.target_audience?.map((data) => (
-          <Typography key={data.id}>{data.name}</Typography>
-        ))}
+      <Box className="overview">
+        <Typography variant="h5" color="white">
+          Ülevaade
+        </Typography>
       </Box>
-      <Box>
-        Eesmärgid:
-        {challengeContent?.goal?.map((data) => (
-          <Typography key={data.id}>{data.name}</Typography>
-        ))}
+      <Box></Box>
+      <Box className="main-info">
+        <Typography variant="h3">Proovikivi tutvustus</Typography>
+        <Box className="main-info-text">
+          <Typography>{challengeContent?.description}</Typography>
+        </Box>
       </Box>
       {auth.email && (
-        <Box>
-          <Button variant="contained" onClick={() => changePage("formpage")}>
-            Loo projekt
-          </Button>
-          <Box>
+        <Box className="project-section">
+          <Box className="project-top">
+            <Typography variant="h3">Loodud projektid</Typography>
+            <Button variant="contained" onClick={() => changePage("formpage")}>
+              Loo projekt
+            </Button>
+          </Box>
+          <Box className="created-project">
             {projectList.map((project, index) => (
               <Button
                 variant="contained"
