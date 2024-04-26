@@ -1,7 +1,8 @@
 package org.balltg.proovikivikestame_be.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.balltg.proovikivikestame_be.model.user.UserModel;
-import org.balltg.proovikivikestame_be.service.UserService;
+import org.balltg.proovikivikestame_be.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,11 +10,11 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/user")
 @CrossOrigin
 public class UserController {
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @GetMapping()
     public List<UserModel> getAllUsers() {

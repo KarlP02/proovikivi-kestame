@@ -1,0 +1,10 @@
+.login-form-page {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form-main {
+    row-gap: 8px;
+}

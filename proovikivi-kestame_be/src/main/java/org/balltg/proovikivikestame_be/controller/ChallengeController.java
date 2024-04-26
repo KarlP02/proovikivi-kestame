@@ -1,14 +1,17 @@
 package org.balltg.proovikivikestame_be.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.balltg.proovikivikestame_be.dto.ChallengeRequest;
+import org.balltg.proovikivikestame_be.dto.challenge.ChallengeNameResponse;
+import org.balltg.proovikivikestame_be.dto.challenge.ChallengeRequest;
+import org.balltg.proovikivikestame_be.dto.challenge.ChallengeResponse;
 import org.balltg.proovikivikestame_be.model.challenge.CategoryModel;
-import org.balltg.proovikivikestame_be.model.challenge.GoalModel;
-import org.balltg.proovikivikestame_be.model.challenge.TargetAudienceModel;
+import org.balltg.proovikivikestame_be.model.challenge.ChallengeModel;
+import org.balltg.proovikivikestame_be.model.GoalModel;
+import org.balltg.proovikivikestame_be.model.TargetAudienceModel;
 import org.balltg.proovikivikestame_be.service.challenge.CategoryService;
 import org.balltg.proovikivikestame_be.service.challenge.ChallengeService;
-import org.balltg.proovikivikestame_be.service.challenge.GoalService;
-import org.balltg.proovikivikestame_be.service.challenge.TargetAudienceService;
+import org.balltg.proovikivikestame_be.service.GoalService;
+import org.balltg.proovikivikestame_be.service.TargetAudienceService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +24,6 @@ public class ChallengeController {
     private final ChallengeService challengeService;
     private final CategoryService categoryService;
     private final TargetAudienceService targetAudienceService;
-    private final GoalService goalService;
 
     @GetMapping("/category")
     public List<CategoryModel> findAllCategories() {
@@ -33,9 +35,19 @@ public class ChallengeController {
         return targetAudienceService.findAll();
     }
 
-    @GetMapping("/goal")
-    public List<GoalModel> findAllGoals() {
-        return goalService.findAll();
+    @GetMapping
+    public List<ChallengeModel> findAllChallenges() {
+        return challengeService.findAll();
+    }
+
+    @GetMapping("/name")
+    public ChallengeNameResponse findChallengeName() {
+        return challengeService.findChallengeName();
+    }
+
+    @GetMapping("/{index}")
+    public ChallengeResponse findChallengeById(@PathVariable Long index) {
+        return challengeService.findChallengeById(index);
     }
 
     @PostMapping("/upload")

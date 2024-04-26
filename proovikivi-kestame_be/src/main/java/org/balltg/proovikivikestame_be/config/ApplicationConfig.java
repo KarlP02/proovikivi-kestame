@@ -1,7 +1,7 @@
 package org.balltg.proovikivikestame_be.config;
 
 import lombok.RequiredArgsConstructor;
-import org.balltg.proovikivikestame_be.repository.UserRepository;
+import org.balltg.proovikivikestame_be.repository.user.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

@@ -1,0 +1,24 @@
+.register-form-page {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+}
+
+.register-form-main {
+    display: flex;
+    flex-direction: column;
+}
+
+.register-form-1 {
+    row-gap: 8px;
+    padding-bottom: 8px !important;
+}
+
+.register-form-2 {
+    padding-bottom: 8px !important;
+}
+
+.register-form-3 {
+    row-gap: 8px;
+}

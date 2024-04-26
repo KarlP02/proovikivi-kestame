@@ -1,13 +1,13 @@
 package org.balltg.proovikivikestame_be.service;
 
 import lombok.RequiredArgsConstructor;
-import org.balltg.proovikivikestame_be.dto.AuthRequest;
-import org.balltg.proovikivikestame_be.dto.AuthResponse;
-import org.balltg.proovikivikestame_be.dto.RegisterRequest;
+import org.balltg.proovikivikestame_be.dto.auth.AuthRequest;
+import org.balltg.proovikivikestame_be.dto.auth.AuthResponse;
+import org.balltg.proovikivikestame_be.dto.auth.RegisterRequest;
 import org.balltg.proovikivikestame_be.model.user.RoleModel;
 import org.balltg.proovikivikestame_be.model.user.UserModel;
-import org.balltg.proovikivikestame_be.repository.RoleRepository;
-import org.balltg.proovikivikestame_be.repository.UserRepository;
+import org.balltg.proovikivikestame_be.repository.user.RoleRepository;
+import org.balltg.proovikivikestame_be.repository.user.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,6 +27,7 @@ public class AuthService {
     public AuthResponse register(RegisterRequest request) {
         Set<RoleModel> roles = new HashSet<>();
         roles.add(roleRepository.findByName("USER"));
+        roles.add(roleRepository.findByName(request.getRole()));
 
         var user = UserModel.builder()
                 .firstname(request.getFirstname())
@@ -37,7 +38,9 @@ public class AuthService {
                 .roles(roles)
                 .build();
         userRepository.save(user);
+
         var jwtToken = jwtService.generateToken(user);
+
         return AuthResponse.builder()
                 .token(jwtToken)
                 .build();
@@ -50,13 +53,17 @@ public class AuthService {
                         request.getPassword()
                 )
         );
+
         var user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow();
+
         Set<RoleModel> role = user.getRoles();
         String roleName = role.toString();
         Map<String, Object> rolesMap = new HashMap<>();
         rolesMap.put("role", roleName);
+
         var jwtToken = jwtService.generateToken(rolesMap, user);
+
         return AuthResponse.builder()
                 .token(jwtToken)
                 .build();

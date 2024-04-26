@@ -1,15 +1,10 @@
-import { Box, Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Box } from "@mui/material";
+import ChallengeList from "../components/challenge/ChallengeList";
 
 const Main = () => {
   return (
     <Box>
-      <Link to="/register">
-        <Button>register</Button>
-      </Link>
-      <Link to="/login">
-        <Button>login</Button>
-      </Link>
+      <ChallengeList />
     </Box>
   );
 };
