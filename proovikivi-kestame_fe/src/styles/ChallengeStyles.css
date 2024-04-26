@@ -56,6 +56,14 @@
     padding: 15px;
     background-color: darkblue;
     height: 25vh;
+    color: white;
+}
+
+.overview-content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    row-gap: 10px;
 }
 
 .main-info {

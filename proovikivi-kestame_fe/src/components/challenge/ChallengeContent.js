@@ -57,15 +57,15 @@ const ChallengeContent = () => {
           <Typography variant="h2" color="#9525c4">
             {challengeContent?.name}
           </Typography>
-          Toimumisaeg:
+          <Typography>Toimumisaeg:</Typography>
           <Typography>
             {challengeContent?.begin_date} - {challengeContent?.end_date}
           </Typography>
-          Panustab eesmärkidesse:
+          <Typography>Panustab eesmärkidesse:</Typography>
           {challengeContent?.goal?.map((data) => (
             <Typography key={data.id}>{data.name}</Typography>
           ))}
-          Sihtgrupid:
+          <Typography>Sihtgrupid:</Typography>
           {challengeContent?.target_audience?.map((data) => (
             <Typography key={data.id}>{data.name}</Typography>
           ))}
@@ -80,11 +80,16 @@ const ChallengeContent = () => {
       </Typography>
       <Typography>Kategooria: {challengeContent?.category?.name}</Typography>
       <Box className="overview">
-        <Typography variant="h5" color="white">
-          Ülevaade
-        </Typography>
+        <Typography variant="h5">Ülevaade</Typography>
+        <Box className="overview-content">
+          <Typography>Asukoht:</Typography>
+          <Typography>Projektide arv:</Typography>
+          <Typography>Meeskonnaliikmed:</Typography>
+          <Typography>Vabatahtlikud:</Typography>
+          <Typography>Mentorid:</Typography>
+          <Typography>Osalejad kokku:</Typography>
+        </Box>
       </Box>
-      <Box></Box>
       <Box className="main-info">
         <Typography variant="h3">Proovikivi tutvustus</Typography>
         <Box className="main-info-text">
